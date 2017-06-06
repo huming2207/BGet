@@ -46,6 +46,7 @@ namespace BoggerCore
             var textReader = new StringReader(rawVideoXml);
             var videoUrl = (VideoUrl) xmlDeserializer.Deserialize(textReader);
 
+            httpClient.Dispose();
             return videoUrl;
         }
     }
