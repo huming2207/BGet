@@ -8,7 +8,7 @@ namespace BoggerCli
     {
         static void Main(string[] args)
         {
-            Console.Write("[INFO] Enter your video ID, e.g. av2961146: ");
+            Console.Write("[INFO] Enter your video ID, e.g. av349183: ");
             string avId = Console.ReadLine();
             Console.WriteLine("[INFO] Please wait...");
 
@@ -32,9 +32,9 @@ namespace BoggerCli
                 
                 if(url.BackupUrl != null && url.BackupUrl.Url.Count != 0)
                 {
-                    foreach(var mp4url in url.BackupUrl.Url)
+                    foreach(var mp4Url in url.BackupUrl.Url)
                     {
-                        Console.WriteLine("[INFO] MP4 backup video URL: {0}", mp4url);
+                        Console.WriteLine("[INFO] MP4 backup video URL: {0}", mp4Url);
                     }
                 }
             }
