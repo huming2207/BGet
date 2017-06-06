@@ -1,4 +1,4 @@
-# Bogger
+﻿# Bogger
 
 Bogger, 一个基于.NET Core和Widnows 10 UWP的Bilibili视频下载器。
 
