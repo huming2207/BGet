@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using System.Diagnostics;
 
 namespace BoggerCore
 {
@@ -31,7 +32,9 @@ namespace BoggerCore
 
             string queryPath = string.Format("/playurl?cid={0}&from=miniplay&player=1&sign={1}", 
                 contentId, magicSignature);
-            
+
+            Debug.WriteLine("[DEBUG] URL got https://interface.bilibili.com" + queryPath);
+
             // Get XML from their API
             string rawVideoXml = await httpClient.GetStringAsync(queryPath);
             if (rawVideoXml == null) throw new ArgumentNullException(nameof(rawVideoXml));

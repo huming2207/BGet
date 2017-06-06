@@ -13,9 +13,9 @@ namespace BoggerCore
             // Get string byte and then return
             byte[] textToHash = Encoding.UTF8.GetBytes(fingerPrint);
             byte[] md5Byte = md5.ComputeHash(textToHash);
-            
+
             // Convert back to string
-            return BitConverter.ToString(md5Byte);
+            return BitConverter.ToString(md5Byte).Replace("-", "").ToLower();
         }
     }
 }
