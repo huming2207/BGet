@@ -7,7 +7,7 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Diagnostics;
 
-namespace BoggerCore
+namespace BgetCore
 {
     public class VideoUrlGrabber
     {

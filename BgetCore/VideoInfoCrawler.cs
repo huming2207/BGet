@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 
-namespace BoggerCore
+namespace BgetCore
 {
     public class VideoInfoCrawler
     {

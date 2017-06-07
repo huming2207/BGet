@@ -1,4 +1,4 @@
-namespace BoggerCore
+namespace BgetCore
 {
     public class VideoDownloader
     {

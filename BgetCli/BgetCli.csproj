@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BoggerCore\BoggerCore.csproj" />
+    <ProjectReference Include="..\BgetCore\BgetCore.csproj" />
   </ItemGroup>
 
 </Project>

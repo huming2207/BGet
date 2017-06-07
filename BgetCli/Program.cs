@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
-using BoggerCore;
+using BgetCore;
 
-namespace BoggerCli
+namespace BgetCli
 {
     class Program
     {

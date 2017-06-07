@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoggerCore", "BoggerCore\BoggerCore.csproj", "{E6C95993-9B31-4CA6-8E96-EBDEB91A1DCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BgetCore", "BgetCore\BgetCore.csproj", "{E6C95993-9B31-4CA6-8E96-EBDEB91A1DCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoggerCli", "BoggerCli\BoggerCli.csproj", "{5AF8AD84-D33F-43CC-90E4-7A5C5BCF0378}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BgetCli", "BgetCli\BgetCli.csproj", "{5AF8AD84-D33F-43CC-90E4-7A5C5BCF0378}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoggerTest", "BoggerTest\BoggerTest.csproj", "{34EED925-1CE6-4203-9E4D-98B9ED84DC84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BgetTest", "BgetTest\BgetTest.csproj", "{34EED925-1CE6-4203-9E4D-98B9ED84DC84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoggerUwp", "BoggerUwp\BoggerUwp.csproj", "{6A459C77-4B9A-4AB1-ACE1-A22D6CDD11D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BgetUwp", "BgetUwp\BgetUwp.csproj", "{6A459C77-4B9A-4AB1-ACE1-A22D6CDD11D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

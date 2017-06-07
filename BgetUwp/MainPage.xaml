@@ -1,8 +1,8 @@
 ﻿<Page
-    x:Class="BoggerUwp.MainPage"
+    x:Class="BgetUwp.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:BoggerUwp"
+    xmlns:local="using:BgetUwp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -24,7 +24,7 @@
                         <ColumnDefinition Width="600"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="searchByAvIdButton" Content="Go Bog!" HorizontalAlignment="Left" Margin="501,4,0,0" VerticalAlignment="Top" Height="50" Width="94" Grid.Column="1" Grid.Row="1" RenderTransformOrigin="0.75,0.615"/>
+                    <Button x:Name="searchByAvIdButton" Content="Go" HorizontalAlignment="Left" Margin="501,4,0,0" VerticalAlignment="Top" Height="50" Width="94" Grid.Column="1" Grid.Row="1" RenderTransformOrigin="0.75,0.615"/>
                     <TextBox x:Name="avIdSearchTextBox" HorizontalAlignment="Left" Margin="15,4,0,0" TextWrapping="Wrap" PlaceholderText="Just enter Video ID or URL... (e.g. av349183)" VerticalAlignment="Top" Height="50" Width="481" FontWeight="Normal" FontSize="20" Grid.Column="1" TextAlignment="DetectFromContent" Grid.Row="1"/>
                 </Grid>
             </PivotItem>
