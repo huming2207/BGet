@@ -22,8 +22,6 @@ namespace BoggerTest
             // Video URL: http://www.bilibili.com/video/av3355175/
             // Video is "What makes you beautiful", Content ID 5309628
             Console.WriteLine("[TEST] Running test for av3355175...");
-
-            // Since thi
             var videoInfoForAv3355175 = await videoInfoCrawler.GetVideoInfo("av3355175");
 
             // Validate the beautiful result and see if it correct content ID

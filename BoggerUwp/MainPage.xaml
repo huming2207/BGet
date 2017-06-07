@@ -5,7 +5,8 @@
     xmlns:local="using:BoggerUwp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    >
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Pivot>
@@ -20,9 +21,11 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="240"/>
+                        <ColumnDefinition Width="600"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
+                    <Button x:Name="searchByAvIdButton" Content="Go Bog!" HorizontalAlignment="Left" Margin="501,4,0,0" VerticalAlignment="Top" Height="50" Width="94" Grid.Column="1" Grid.Row="1" RenderTransformOrigin="0.75,0.615"/>
+                    <TextBox x:Name="avIdSearchTextBox" HorizontalAlignment="Left" Margin="15,4,0,0" TextWrapping="Wrap" PlaceholderText="Just enter Video ID or URL... (e.g. av349183)" VerticalAlignment="Top" Height="50" Width="481" FontWeight="Normal" FontSize="20" Grid.Column="1" TextAlignment="DetectFromContent" Grid.Row="1"/>
                 </Grid>
             </PivotItem>
             <PivotItem x:Name="MultiVideoTab" Header="Multiple Videos" FontWeight="Bold">
@@ -40,6 +43,26 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                 </Grid>
+            </PivotItem>
+            <PivotItem x:Name="DownloadTaskTab" Header="Download Tasks" FontWeight="Bold">
+                <Grid>
+                    <ListView x:Name="TaskList"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" BorderBrush="LightGray" BorderThickness="2" Margin="10,10,10,15">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Title}" Margin="20,0,20,8" FontSize="22" FontWeight="SemiBold" Foreground="SandyBrown" />
+                                    <TextBlock Text="{Binding BriefContent}" Margin="20,0,20,8" FontSize="15" Foreground="Black"  Opacity="0.5" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </PivotItem>
+            <PivotItem x:Name="SettingTab" Header="Settings" FontWeight="Bold">
+
+            </PivotItem>
+            <PivotItem x:Name="AboutTab" Header="About" FontWeight="Bold">
+
             </PivotItem>
         </Pivot>
     </Grid>
