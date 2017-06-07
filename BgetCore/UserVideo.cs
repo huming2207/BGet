@@ -11,7 +11,7 @@ namespace BgetCore
         public int Comment { get; set; }
 
         [JsonProperty("typeid")]
-        public int Typeid { get; set; }
+        public int TypeId { get; set; }
 
         [JsonProperty("play")]
         public int Play { get; set; }
@@ -53,7 +53,7 @@ namespace BgetCore
         public int Favorites { get; set; }
 
         [JsonProperty("aid")]
-        public int Aid { get; set; }
+        public int VideoId { get; set; }
 
         [JsonProperty("hide_click")]
         public bool HideClick { get; set; }
