@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
-using BgetCore;
+using BgetCore.Video;
 
 
 namespace BgetTest

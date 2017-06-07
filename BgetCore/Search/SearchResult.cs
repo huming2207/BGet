@@ -27,5 +27,9 @@ namespace BgetCore.Search
 
         [JsonProperty("html")]
         public string RawHtml { get; set; }
+        
+        public bool IsSuccessful { get; set; }
+        
+        public string RawTextIfNotSuccessful { get; set; }
     }
 }

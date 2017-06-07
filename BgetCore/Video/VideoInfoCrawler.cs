@@ -53,10 +53,13 @@ namespace BgetCore.Video
 
         private async Task<string> _GetRawHtmlPage(string avId)
         {
-            var httpClient = new HttpClient()
+            var httpClient = new HttpClient();
+
+            // If the video ID contains the URL. If it has, don't set the base address again.
+            if (!avId.Contains("bilibili.com/video/av"))
             {
-                BaseAddress = new Uri("http://www.bilibili.com/video/"),
-            };
+                httpClient.BaseAddress = new Uri("https://www.bilibili.com/video/");
+            }
 
             // Force using Internet Explorer 10's user agent to get the flash version instead of HTML5 version
             httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (MSIE 10.0; Windows NT 6.1; Trident/5.0)");
