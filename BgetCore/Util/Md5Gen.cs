@@ -2,9 +2,9 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace BgetCore
+namespace BgetCore.Util
 {
-    public class Utils
+    public class Md5Gen
     {
         public static string GetMD5(string fingerPrint)
         {

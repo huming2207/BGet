@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Serialization;
 using System.Collections.Generic;
-namespace BgetCore
+namespace BgetCore.Video
 {
     [XmlRoot(ElementName="backup_url")]
     public class BackupUrl 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BgetCore
+namespace BgetCore.Video
 {
     public class VideoInfo
     {

@@ -4,10 +4,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
+using BgetCore.Video;
 
-namespace BgetCore
+namespace BgetCore.Search
 {
-    public class BatchVideoCrawler
+    public class Search
     {
         public async Task<List<VideoInfo>> GetAllVideoInfoByKeyword(string keyword)
         {

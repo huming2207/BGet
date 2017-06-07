@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace BgetCore
+namespace BgetCore.Search
 {
     public class SearchResult
     {

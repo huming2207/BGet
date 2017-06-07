@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using BgetCore;
+using BgetCore.Video;
 
 namespace BgetCli
 {
@@ -20,7 +20,7 @@ namespace BgetCli
             Console.WriteLine("[INFO] Author: " + videoInfo.Author);
             Console.WriteLine("[INFO] Description: " + videoInfo.Description + "\n\n\n");
 
-            var videoUrlGrabber = new VideoUrlGrabber();
+            var videoUrlGrabber = new VideoUrlCrawler();
             var videoUrl = videoUrlGrabber.GetUrlBySingleContentId(cid, avId).Result;
             Console.WriteLine("[INFO] Got {0} video sections.", videoUrl.Durl.Count);
 

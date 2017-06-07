@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Diagnostics;
+using BgetCore.Util;
 
-namespace BgetCore
+namespace BgetCore.Video
 {
-    public class VideoUrlGrabber
+    public class VideoUrlCrawler
     {
         // From here, thx mate lol:
         //     https://github.com/soimort/you-get/blob/develop/src/you_get/extractors/bilibili.py#L15
@@ -28,7 +29,7 @@ namespace BgetCore
             
             // Now follows the you-get project and do some magic.
             string magicSignature =
-                Utils.GetMD5(string.Format("cid={0}&from=miniplay&player=1{1}", contentId, MagicKey));
+                Md5Gen.GetMD5(string.Format("cid={0}&from=miniplay&player=1{1}", contentId, MagicKey));
 
             string queryPath = string.Format("/playurl?cid={0}&from=miniplay&player=1&sign={1}", 
                 contentId, magicSignature);
