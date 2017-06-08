@@ -24,8 +24,8 @@
                         <ColumnDefinition Width="600"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="searchByAvIdButton" Content="Go" HorizontalAlignment="Left" Margin="501,4,0,0" VerticalAlignment="Top" Height="50" Width="94" Grid.Column="1" Grid.Row="1" RenderTransformOrigin="0.75,0.615"/>
-                    <TextBox x:Name="avIdSearchTextBox" HorizontalAlignment="Left" Margin="15,4,0,0" TextWrapping="Wrap" PlaceholderText="Just enter Video ID or URL... (e.g. av349183)" VerticalAlignment="Top" Height="50" Width="481" FontWeight="Normal" FontSize="20" Grid.Column="1" TextAlignment="DetectFromContent" Grid.Row="1"/>
+                    <Button x:Name="searchByinputVideoButton" Content="Go" HorizontalAlignment="Left" Margin="501,4,0,0" VerticalAlignment="Top" Height="50" Width="94" Grid.Column="1" Grid.Row="1" RenderTransformOrigin="0.75,0.615"/>
+                    <TextBox x:Name="inputVideoSearchTextBox" HorizontalAlignment="Left" Margin="15,4,0,0" TextWrapping="Wrap" PlaceholderText="Just enter Video ID or URL... (e.g. av349183)" VerticalAlignment="Top" Height="50" Width="481" FontWeight="Normal" FontSize="20" Grid.Column="1" TextAlignment="DetectFromContent" Grid.Row="1"/>
                 </Grid>
             </PivotItem>
             <PivotItem x:Name="MultiVideoTab" Header="Multiple Videos" FontWeight="Bold">

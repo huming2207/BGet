@@ -16,7 +16,7 @@ namespace BgetCore.Video
         //     https://github.com/soimort/you-get/blob/develop/src/you_get/extractors/bilibili.py#L15
         private const string MagicKey = "1c15888dc316e05a15fdd0a02ed6584f";
         
-        public async Task<VideoUrl> GetUrlBySingleContentId(string contentId, string avId)
+        public async Task<VideoUrl> GetUrlBySingleContentId(string contentId, string inputVideo)
         {
 
             var httpClient = new HttpClient()
@@ -25,7 +25,7 @@ namespace BgetCore.Video
             };
             
             // Set referrer (seems to be enough as you-get did the same thing lol, need to be tested later on)
-            httpClient.DefaultRequestHeaders.Referrer = new Uri(string.Format("http://www.bilibili.com/video/{0}", avId));
+            httpClient.DefaultRequestHeaders.Referrer = new Uri(string.Format("http://www.bilibili.com/video/{0}", inputVideo));
             
             // Now follows the you-get project and do some magic.
             string magicSignature =

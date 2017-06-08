@@ -9,11 +9,11 @@ namespace BgetCli
         static void Main(string[] args)
         {
             Console.Write("[INFO] Enter your video ID, e.g. av349183: ");
-            string avId = Console.ReadLine();
+            string inputVideo = Console.ReadLine();
             Console.WriteLine("[INFO] Please wait...");
 
             var cidCrawler = new VideoInfoCrawler();
-            var videoInfo = cidCrawler.GetVideoInfo(avId).Result;
+            var videoInfo = cidCrawler.GetVideoInfo(inputVideo).Result;
             string cid = videoInfo.ContentId;
             Console.WriteLine("[DEBUG] CID is " + cid);
             Console.WriteLine("[INFO] Title: " + videoInfo.Title);
@@ -21,7 +21,7 @@ namespace BgetCli
             Console.WriteLine("[INFO] Description: " + videoInfo.Description + "\n\n\n");
 
             var videoUrlGrabber = new VideoUrlCrawler();
-            var videoUrl = videoUrlGrabber.GetUrlBySingleContentId(cid, avId).Result;
+            var videoUrl = videoUrlGrabber.GetUrlBySingleContentId(cid, inputVideo).Result;
             Console.WriteLine("[INFO] Got {0} video sections.", videoUrl.Durl.Count);
 
             
