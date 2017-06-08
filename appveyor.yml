@@ -1,0 +1,7 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+platform: Any CPU
+build:
+  project: Bget.sln
+  parallel: true
+  verbosity: detailed

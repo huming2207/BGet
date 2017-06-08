@@ -2,11 +2,13 @@
 
 B-Get, 一个基于.NET Core的Bilibili视频下载器。
 
+CI测试（AppVeyor, master）：[![Build status](https://ci.appveyor.com/api/projects/status/qlsk5u27bsgdkalq/branch/master?svg=true)](https://ci.appveyor.com/project/huming2207/bget/branch/master)
+
 [For English README, please refer to this link](TODO)
 
 ## 简介
 
-没错，这破玩意儿就是个B站视频下载器而已。
+没错，这破玩意儿就是个B站视频／用户API解析库+下载器app而已。
 
 本项目是为了在恶劣网络环境下提升B站观影体验（是的我必须得黑一把土澳的[TPG](https://en.wikipedia.org/wiki/TPG_Telecom)），以及某些收集癖患者做离线备份而设计。
 
