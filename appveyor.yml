@@ -10,4 +10,6 @@ before_build:
 build:
   project: Bget.sln
   parallel: true
-  verbosity: detailed
+  verbosity: minimal
+test_script:
+- cmd: dotnet test
