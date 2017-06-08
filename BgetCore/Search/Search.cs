@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.ComTypes;
 using Newtonsoft.Json;
 using HtmlAgilityPack;
 using BgetCore.Video;
+using BgetCore.User;
 
 namespace BgetCore.Search
 {
@@ -45,9 +46,36 @@ namespace BgetCore.Search
             return videoInfoList;
         }
 
-        public async Task<List<int>> GetAllUserIdFromKeyword(string keyword)
+        public async Task<List<UserInfo>> GetAllUserIdFromKeyword(string keyword)
         {
+            // Set initial page from page 1
+            int pageCount = 1;
+            var userInfoList = new List<UserInfo>();
+            var searchResult = await SearchByKeyword(keyword, SearchType.UpUser, pageCount);
 
+            // "Iterate" the pages
+            while (searchResult.IsSuccessful)
+            {
+                // Parse HTML content
+                var htmlDoc = new HtmlDocument();
+                htmlDoc.LoadHtml(searchResult.RawHtml);
+
+                // Get URLs
+                var userIdNodes = htmlDoc.DocumentNode.SelectNodes("//div[@class=\"attention-btn js-attention-user\"]");
+                var userInfoGrabber = new UserInfoGrabber();
+
+                // Iterate the nodes
+                foreach (var singleNode in userIdNodes)
+                {
+                    var userId = singleNode.Attributes["data-id"].Value;
+                    userInfoList.Add(await userInfoGrabber.GetUserInfoById(userId));
+                }
+
+                // Update page count and move to next page...
+                searchResult = await SearchByKeyword(keyword, SearchType.Video, ++pageCount);
+            }
+
+            return userInfoList;
         }
 
         public async Task<SearchResult> SearchByKeyword(string keyword, SearchType searchType, int searchPage = 1)
