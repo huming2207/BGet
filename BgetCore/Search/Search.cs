@@ -38,7 +38,7 @@ namespace BgetCore.Search
                     var url = string.Format("https:{0}", singleNode.Attributes["href"].Value);
                     videoInfoList.Add(await videoInfoCrawler.GetVideoInfo(url));
                 }
-                
+      
                 // Update page count and move to next page...
                 searchResult = await SearchByKeyword(keyword, SearchType.Video, ++pageCount);
             }
