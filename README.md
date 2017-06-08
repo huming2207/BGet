@@ -1,10 +1,10 @@
 # B-Get
 
+### **[This is a project mainly served for Chinese guys. For English README, please refer to this link](README-en.md)**
+
 B-Get, 一个基于.NET Core的Bilibili视频下载器。
 
 CI测试（AppVeyor, master）：[![Build status](https://ci.appveyor.com/api/projects/status/qlsk5u27bsgdkalq/branch/master?svg=true)](https://ci.appveyor.com/project/huming2207/bget/branch/master)
-
-[For English README, please refer to this link](TODO)
 
 ## 简介
 
@@ -20,29 +20,37 @@ CI测试（AppVeyor, master）：[![Build status](https://ci.appveyor.com/api/pr
 
 ## 还差啥玩意儿没整完啊？
 
-- 视频
+### 视频
 
 - [x] CID解析
 - [x] 单个视频地址解析
 - [ ] 多个视频地址解析
 - [x] 视频搜索结果解析
+- [ ] FLV视频合并
 
-- 用户
+### 用户
 
 - [x] 用户解析
 - [x] 用户搜索结果解析
+- [x] 用户视频解析
 
-- 搜索
+### 搜索
 
 - [x] 全部搜索功能
 
-- 杂项
+### 杂项
 
 - [x] 单元测试
-- [ ] 报错优化
+- [ ] 异常（报错）处理优化
 - [ ] 多线程视频解析
 
-- 成品app
+### 下载
+
+- [ ] 基本下载功能
+- [ ] 多线程下载
+- [ ] 走代理
+
+### 成品app
 
 - [x] 跨平台命令行app **（目前半完工，仅解析，未提供下载功能）**
 - [ ] Windows 10 UWP App
@@ -50,6 +58,8 @@ CI测试（AppVeyor, master）：[![Build status](https://ci.appveyor.com/api/pr
 - [ ] macOS app (Xamarin)
 
 ## 所以你这破代码得咋用啊？
+
+### 视频获取
 
 关于视频信息获取，目前提供如下信息：
 
