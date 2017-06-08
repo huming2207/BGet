@@ -38,8 +38,8 @@ namespace BgetCore.User
                 httpClient.Dispose();
                 return new UserInfo()
                 {
-                    IsSuccessful = false,
-                    rawJsonIfNotSuccessful = await postResponse.Content.ReadAsStringAsync()
+                    Status = false,
+                    RawJsonIfNotSuccessful = await postResponse.Content.ReadAsStringAsync()
                 };
             }
             else

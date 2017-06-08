@@ -59,7 +59,7 @@ namespace BgetCore.User
         public bool HideClick { get; set; }
     }
 
-    public class Data
+    public class UploadedVideo
     {
         [JsonProperty("vlist")]
         public List<VideoList> VideoList { get; set; }
@@ -77,6 +77,8 @@ namespace BgetCore.User
         public bool Status { get; set; }
 
         [JsonProperty("data")]
-        public Data Data { get; set; }
+        public UploadedVideo UploadedVideo { get; set; }
+
+        public string RawJsonIfNotSuccessful { get; set; }
     }
 }

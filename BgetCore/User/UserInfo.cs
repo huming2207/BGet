@@ -69,7 +69,7 @@ namespace BgetCore.User
         public int Pid { get; set; }
     }
 
-    public class Data
+    public class UserData
     {
 
         [JsonProperty("DisplayRank")]
@@ -164,13 +164,12 @@ namespace BgetCore.User
     {
 
         [JsonProperty("data")]
-        public Data Data { get; set; }
+        public UserData UserData { get; set; }
 
         [JsonProperty("status")]
         public bool Status { get; set; }
 
-        public bool IsSuccessful { get; set; }
-        public string rawJsonIfNotSuccessful { get; set; }
+        public string RawJsonIfNotSuccessful { get; set; }
     }
 
 }
