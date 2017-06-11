@@ -14,23 +14,23 @@ namespace BgetCore.Video
             var rawHtml = await _GetRawHtmlPage(inputVideo);
             htmlDoc.LoadHtml(rawHtml);
 
-            var videoId = string.Empty;
+            string videoPage;
 
-            if(inputVideo.Contains("bilibili.com/video/av"))
+            if(!inputVideo.Contains("bilibili.com/video/av"))
             {
-                // If the inputVideo is a video URL, then get the last item (Video ID) from video URL
-                videoId = inputVideo.Split('/')[inputVideo.Split('/').Length - 1];
+                // If video does not have a valid URL, then just assume it is a single video ID
+                videoPage = "https://www.bilibili.com/video/" + inputVideo;
             }
             else
             {
-                // If the inputVideo (seems to be) already a video ID, then pass the video ID directly
-                videoId = inputVideo;
+                // If the inputVideo (seems to be) already a page URL, then set it directly.
+                videoPage = inputVideo;
             }
 
             return new VideoInfo()
             {
                 ContentId = _GetVideoContentId(rawHtml),
-                VideoId = videoId,
+                VideoPage = videoPage,
                 Description = htmlDoc.DocumentNode.SelectSingleNode("//meta[@name=\"description\"]").Attributes["content"].Value,
                 Tags = htmlDoc.DocumentNode.SelectSingleNode("//meta[@name=\"keywords\"]").Attributes["content"].Value.Split(','),
                 Author = htmlDoc.DocumentNode.SelectSingleNode("//meta[@name=\"author\"]").Attributes["content"].Value,
@@ -40,7 +40,7 @@ namespace BgetCore.Video
 
         private string _GetVideoContentId(string rawHtml)
         {
-            string htmlLineBuffer = string.Empty;
+            string htmlLineBuffer;
             
             // Here we can't use HtmlAgilityPack to parse HTML because some video pages seem to be different from others.
             // So a better solution is, parse the HTML string manually.
@@ -76,7 +76,7 @@ namespace BgetCore.Video
                 httpClient.BaseAddress = new Uri("https://www.bilibili.com/video/");
             }
 
-            // Force using Internet Explorer 10's user agent to get the flash version instead of HTML5 version
+            // Force using Internet Explorer 10's user agent to get the flash version instead of pure HTML5 version
             httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (MSIE 10.0; Windows NT 6.1; Trident/5.0)");
 
             // Get the HTML string
