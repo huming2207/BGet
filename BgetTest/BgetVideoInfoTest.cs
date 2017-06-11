@@ -20,7 +20,7 @@ namespace BgetTest
         public async Task WhatMakesYouBeautifulMvTest()
         {
             // Video URL: http://www.bilibili.com/video/av3355175/
-            // Video is "What makes you beautiful", Content ID 5309628
+            // Video is "What makes ou beautiful", Content ID 5309628
             Console.WriteLine("[TEST] Running test for av3355175...");
             var videoInfoForAv3355175 = await videoInfoCrawler.GetVideoInfo("av3355175");
 
