@@ -16,7 +16,7 @@ namespace BgetCore.Video
         //     https://github.com/soimort/you-get/blob/develop/src/you_get/extractors/bilibili.py#L15
         private const string MagicKey = "1c15888dc316e05a15fdd0a02ed6584f";
         
-        public async Task<VideoUrl> GetUrlBySingleContentId(string contentId, string inputVideo)
+        public async Task<VideoUrl> GetUrlBySingleContentId(VideoInfo videoInfo)
         {
 
             var httpClient = new HttpClient()
@@ -25,14 +25,14 @@ namespace BgetCore.Video
             };
             
             // Set referrer (seems to be enough as you-get did the same thing lol, need to be tested later on)
-            httpClient.DefaultRequestHeaders.Referrer = new Uri(string.Format("http://www.bilibili.com/video/{0}", inputVideo));
+            httpClient.DefaultRequestHeaders.Referrer = new Uri(videoInfo.VideoPage);
             
             // Now follows the you-get project and do some magic.
             string magicSignature =
-                Md5Gen.GetMD5(string.Format("cid={0}&from=miniplay&player=1{1}", contentId, MagicKey));
+                Md5Gen.GetMD5(string.Format("cid={0}&from=miniplay&player=1{1}", videoInfo.ContentId, MagicKey));
 
             string queryPath = string.Format("/playurl?cid={0}&from=miniplay&player=1&sign={1}", 
-                contentId, magicSignature);
+                videoInfo.ContentId, magicSignature);
 
             Debug.WriteLine("[DEBUG] URL got https://interface.bilibili.com" + queryPath);
 

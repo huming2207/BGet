@@ -20,7 +20,7 @@ namespace BgetTest
         public async Task WhatMakesYouBeautifulMvTest()
         {
             // Video URL: http://www.bilibili.com/video/av3355175/
-            // Video is "What makes you beautiful", Content ID 5309628
+            // Video is "What makes ou beautiful", Content ID 5309628
             Console.WriteLine("[TEST] Running test for av3355175...");
             var videoInfoForAv3355175 = await videoInfoCrawler.GetVideoInfo("av3355175");
 
@@ -35,7 +35,7 @@ namespace BgetTest
             // Video URL: http://www.bilibili.com/video/av349183/
             // Video is "OnePublic - Feel Again", Content ID 540559
             Console.WriteLine("[TEST] Running test for av349183...");
-            var videoInfoForAv349183 = await videoInfoCrawler.GetVideoInfo("av349183");
+            var videoInfoForAv349183 = await videoInfoCrawler.GetVideoInfo("http://www.bilibili.com/video/av349183/");
 
             // Now it should "feels again", at least not null lol.
             Assert.NotNull(videoInfoForAv349183);
@@ -48,7 +48,7 @@ namespace BgetTest
             // Video URL: http://www.bilibili.com/video/av3898141/
             // Video is "Just the way you are", Content ID 6270102
             Console.WriteLine("[TEST] Running test for av3898141...");
-            var videoInfoForAv3898141 = await videoInfoCrawler.GetVideoInfo("av3898141");
+            var videoInfoForAv3898141 = await videoInfoCrawler.GetVideoInfo("http://www.bilibili.com/video/av3898141");
             Assert.NotNull(videoInfoForAv3898141);
             Assert.True(videoInfoForAv3898141.ContentId.Equals("6270102"));
         }
