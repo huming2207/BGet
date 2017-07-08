@@ -5,22 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BgetWpf"
         mc:Ignorable="d"
-        Title="BGet for Windows" Height="350" Width="650">
+        Title="BGet for Windows" Height="450" Width="650">
     <Grid>
-        <TabControl HorizontalAlignment="Left" Height="312" VerticalAlignment="Top" Width="630">
+        <TabControl HorizontalAlignment="Left" Height="412" VerticalAlignment="Top" Width="630">
             <!--Tab item starts: Add Task-->
             <TabItem Header="Add task" Margin="0,0,-2,0">
                 <Grid Background="White" >
-                    <TextBox Name="AddTaskUrlTextbox" HorizontalAlignment="Left" Height="34" Margin="48,45,0,0" TextWrapping="Wrap" Text="http://" VerticalAlignment="Top" Width="526" FontSize="20"/>
-                    <Button Content="Go" HorizontalAlignment="Left" Margin="48,107,0,0" VerticalAlignment="Top" Width="526" Height="41" Click="Button_Click"/>
+                    <TextBox x:Name="AddTaskUrlTextbox" HorizontalAlignment="Left" Height="34" Margin="48,45,0,0" 
+                             TextWrapping="Wrap" Text="http://" VerticalAlignment="Top" Width="526" FontSize="20"/>
+                    <Button x:Name="AddTaskButton" Content="Go" HorizontalAlignment="Left" Margin="48,95,0,0" VerticalAlignment="Top" Width="526" Height="47" />
+                    <TextBlock Text="Hint: You can type in video URL, 
+                                    user URL or channel URL. This app will automatically detect what you have input." 
+                               HorizontalAlignment="Left" Margin="48,331,0,0"  VerticalAlignment="Top" Height="43" Width="526" Foreground="Gray" TextWrapping="Wrap"/>
                 </Grid>
 
             </TabItem>
-
+            <!--Tab item ends: Add Task-->
+            
             <!--Tab item starts: Task List-->
             <TabItem Header="Task List">
                 <Grid Background="White" >
-                    <ListView Name="DownloadTaskList">
+                    <ListView x:Name="DownloadTaskList">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Video Title" Width="250" DisplayMemberBinding="{Binding VideoTitle}"/>
@@ -47,39 +52,119 @@
                     </ListView>
                 </Grid>
             </TabItem>
-
+            <!--Tab item ends: Task list-->
+            
             <!--Tab item starts: Settings-->
             <TabItem Header="Settings">
                 <Grid Background="White">
-                    <GroupBox Header="General" HorizontalAlignment="Left" Height="139" Margin="10,10,0,0" VerticalAlignment="Top" Width="604">
+                    <!-- BGet group box -->
+                    <GroupBox Header="BGet" HorizontalAlignment="Left" Height="132" Margin="10,10,0,0" VerticalAlignment="Top" Width="604">
                         <Grid>
-                            <GroupBox Header="Concurrent task" HorizontalAlignment="Left" Height="96" Margin="10,10,0,0" VerticalAlignment="Top" Width="228">
+                            
+                            <!--Preferred file format groupbox-->
+                            <GroupBox Header="Preferred file format" HorizontalAlignment="Left" Height="96" Margin="10,10,0,0" VerticalAlignment="Top" Width="158">
                                 <Grid>
-                                    <TextBox x:Name="ManualParallelTaskTextbox" PreviewTextInput="InputValidate_NumOnly" HorizontalAlignment="Left" Height="22" Margin="165,41,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="31"/>
-                                    <CheckBox x:Name="AutoParallelTaskCheckbox"  Content="Let Aria2 decide for me" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="182"/>
-                                    <Label Content="Maximum concurrent task: " HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="150"/>
-                                </Grid>
-                            </GroupBox>
-                            <GroupBox Header="Preferred file format" HorizontalAlignment="Left" Height="96" Margin="254,10,0,0" VerticalAlignment="Top" Width="158">
-                                <Grid>
-                                    <RadioButton x:Name="FlvFileFormatRadioButton" Content="FLV container" HorizontalAlignment="Left" Margin="28,18,0,0" VerticalAlignment="Top"/>
-                                    <RadioButton x:Name="Mp4FileFormatRadioButton" Content="MP4 container" HorizontalAlignment="Left" Margin="28,38,0,0" VerticalAlignment="Top"/>
+                                    <RadioButton x:Name="FlvFileFormatRadioButton" Content="FLV container" HorizontalAlignment="Left" Margin="21,18,0,0" VerticalAlignment="Top"/>
+                                    <RadioButton x:Name="Mp4FileFormatRadioButton" Content="MP4 container" HorizontalAlignment="Left" Margin="21,38,0,0" VerticalAlignment="Top"/>
                                 </Grid>
                             </GroupBox>
 
+                            <!--Preferred quality groupbox-->
+                            <GroupBox Header="Preferred quality" HorizontalAlignment="Left" Height="96" Margin="173,10,0,0" VerticalAlignment="Top" Width="129">
+                                <Grid>
+                                    <RadioButton x:Name="HighQualityRadioButton" Content="High" HorizontalAlignment="Left" Margin="21,10,0,0" VerticalAlignment="Top"/>
+                                    <RadioButton x:Name="MediumQualityRadioButton" Content="Medium" HorizontalAlignment="Left" Margin="21,30,0,0" VerticalAlignment="Top"/>
+                                    <RadioButton x:Name="LowQualityRadioButton" Content="Low" HorizontalAlignment="Left" Margin="21,50,0,0" VerticalAlignment="Top"/>
+                                </Grid>
+                            </GroupBox>
 
-
+                            <!--Aria2 JSON RPC groupbox-->
+                            <GroupBox Header="Aria2 JSON-RPC" HorizontalAlignment="Left" Height="96" Margin="307,10,0,0" VerticalAlignment="Top" Width="275">
+                                <Grid>
+                                    <RadioButton x:Name="BundledAria2RadioButton" Content="Use bundled Aria2" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="184"/>
+                                    <RadioButton x:Name="ExtAria2RadioButton" Content="Use external Aria2" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Width="184"/>
+                                    <Label Content="URL: " HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top"/>
+                                    <TextBox x:Name="JsonRpcUrlTextbox" HorizontalAlignment="Left" Margin="52,49,0,2" TextWrapping="Wrap" Text="http://localhost:6800/jsonrpc" Width="201" />
+                                </Grid>
+                            </GroupBox>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Aria2 Downloader Tweaks" HorizontalAlignment="Left" Height="120" Margin="10,154,0,0" VerticalAlignment="Top" Width="604"/>
+                    
+                    <!-- Aria2 Downloader groupbox -->
+                    <GroupBox Header="Aria2 Downloader" HorizontalAlignment="Left" Height="227" Margin="10,147,0,0" VerticalAlignment="Top" Width="604">
+                        <Grid>
+
+                            <!-- Concurrent task groupbox -->
+                            <GroupBox Header="Concurrent task" HorizontalAlignment="Left" Height="89" Margin="10,10,0,0" VerticalAlignment="Top" Width="213">
+                                <Grid>
+                                    <TextBox x:Name="ManualParallelTaskTextbox" PreviewTextInput="InputValidate_NumOnly" HorizontalAlignment="Left" Height="22" Margin="160,39,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="31" RenderTransformOrigin="0.522,0.03"/>
+                                    <CheckBox x:Name="AutoParallelTaskCheckbox"  Content="Let Aria2 decide for me" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Width="150"/>
+                                    <Label Content="Maximum concurrent task: " HorizontalAlignment="Left" Margin="6,35,0,0" VerticalAlignment="Top" Width="150"/>
+                                </Grid>
+                            </GroupBox>
+
+                            <!-- Multithreading groupbox -->
+                            <GroupBox x:Name="MultiThreadingGroupBox" Header="Multi-threading" HorizontalAlignment="Left" Height="89" Margin="228,10,0,0" VerticalAlignment="Top" Width="215">
+                                <Grid>
+                                    <Label Content="Max. connection per server:" HorizontalAlignment="Left" Margin="8,5,0,0" VerticalAlignment="Top"/>
+                                    <Label Content="Split:" HorizontalAlignment="Left" Margin="128,36,0,0" VerticalAlignment="Top"/>
+                                    <TextBox x:Name="MaxConnectionTextbox" HorizontalAlignment="Left" Height="23" Margin="168,8,0,0" TextWrapping="Wrap" Text="15" VerticalAlignment="Top" Width="28"/>
+                                    <TextBox x:Name="SplitCountTextbox" HorizontalAlignment="Left" Height="23" Margin="169,39,0,0" TextWrapping="Wrap" Text="15" VerticalAlignment="Top" Width="28"/>
+
+                                </Grid>
+                            </GroupBox>
+
+                            <!-- Disk cache groupbox -->
+                            <GroupBox Header="Disk cache" HorizontalAlignment="Left" Height="89" Margin="448,10,0,0" VerticalAlignment="Top" Width="134">
+                                <Grid>
+                                    <TextBox x:Name="DiskCacheTextbox" HorizontalAlignment="Left" Height="23" Margin="28,21,0,0" TextWrapping="Wrap" Text="32" VerticalAlignment="Top" Width="32"/>
+                                    <Label Content="MB" Margin="63,18,32,25"/>
+                                </Grid>
+                            </GroupBox>
+
+                            <!-- Download path groupbox -->
+                            <GroupBox Header="Download path" HorizontalAlignment="Left" Height="55" Margin="10,104,0,0" VerticalAlignment="Top" Width="572">
+                                <Grid>
+                                    <TextBox x:Name="DownloadPathTextbox" HorizontalAlignment="Left" Height="23" Margin="27,5,0,0" TextWrapping="Wrap" Text="C:\" VerticalAlignment="Top" Width="329"/>
+                                    <Button x:Name="DownloadPathSetButton" Content="Set" HorizontalAlignment="Left" Margin="458,5,0,0" VerticalAlignment="Top" Width="92" Height="23"/>
+                                    <Button x:Name="DownloadPathLocateButton" Content="Locate" HorizontalAlignment="Left" Margin="361,5,0,0" VerticalAlignment="Top" Width="92" Height="23"/>
+
+                                </Grid>
+                            </GroupBox>
+
+                            <!-- Save button -->
+                            <Button x:Name="SaveAria2SettingButton" Content="Save and restart Aria2 daemon" HorizontalAlignment="Left" Margin="10,164,0,0" VerticalAlignment="Top" Width="572" Height="30"/>
+                        </Grid>
+                    </GroupBox>
                 </Grid>
             </TabItem>
-
+            <!--Tab item ends: Settings-->
+            
             <!--Tab item starts: About-->
             <TabItem Header="About">
-                <Grid Background="White"/>
+                <Grid Background="White">
+                    <Label Content="BGet" HorizontalAlignment="Left" Margin="33,17,0,0" VerticalAlignment="Top" FontSize="36" FontWeight="Bold"/>
+                    <Label Content="for Windows Desktop" HorizontalAlignment="Left" Margin="130,34,0,0" VerticalAlignment="Top" Width="306" FontSize="20" FontWeight="Bold"/>
+                    <Label Content="...yet another Bilibili video cacher" HorizontalAlignment="Left" Margin="37,70,0,0" VerticalAlignment="Top" Width="306" FontSize="17"/>
+                    <Button x:Name="ForkMeButton" Content="By @huming2207      Fork me on GitHub! 😂" HorizontalAlignment="Left" Margin="287,78,0,0" VerticalAlignment="Top" Width="246" Background="White" Height="28" RenderTransformOrigin="0.5,0.5">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-16.826"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <GroupBox Header="Details" HorizontalAlignment="Left" Height="202" Margin="37,172,0,0" VerticalAlignment="Top" Width="577">
+                        <TextBlock x:Name="AppDetailTextBlock" Text="{}"  Margin="10,10,0,0">
+
+                        </TextBlock>
+                    </GroupBox>
+                </Grid>
             </TabItem>
-            <GroupBox Header="GroupBox" Height="102" Width="273"/>
+            <!--Tab item starts: About-->
+
         </TabControl>
 
     </Grid>

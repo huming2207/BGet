@@ -26,11 +26,6 @@ namespace BgetWpf
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         // From: https://stackoverflow.com/questions/1268552/how-do-i-get-a-textbox-to-only-accept-numeric-input-in-wpf
         private void InputValidate_NumOnly(object sender, TextCompositionEventArgs e)
         {
