@@ -1,74 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace BgetCore.User
+namespace BgetCore.User.UserResult
 {
-    public class LevelInfo
-    {
-
-        [JsonProperty("current_exp")]
-        public int CurrentExp { get; set; }
-
-        [JsonProperty("current_level")]
-        public int CurrentLevel { get; set; }
-
-        [JsonProperty("current_min")]
-        public int CurrentMin { get; set; }
-
-        [JsonProperty("next_exp")]
-        public string NextExp { get; set; }
-    }
-
-    public class Nameplate
-    {
-
-        [JsonProperty("condition")]
-        public string Condition { get; set; }
-
-        [JsonProperty("image")]
-        public string Image { get; set; }
-
-        [JsonProperty("image_small")]
-        public string ImageSmall { get; set; }
-
-        [JsonProperty("level")]
-        public string Level { get; set; }
-
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("nid")]
-        public int Nid { get; set; }
-    }
-
-    public class OfficialVerify
-    {
-
-        [JsonProperty("desc")]
-        public string Desc { get; set; }
-
-        [JsonProperty("type")]
-        public int Type { get; set; }
-    }
-
-    public class Pendant
-    {
-
-        [JsonProperty("expire")]
-        public int Expire { get; set; }
-
-        [JsonProperty("image")]
-        public string Image { get; set; }
-
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("pid")]
-        public int Pid { get; set; }
-    }
-
     public class UserData
     {
 
@@ -158,18 +92,6 @@ namespace BgetCore.User
 
         [JsonProperty("toutuId")]
         public int ToutuId { get; set; }
-    }
-
-    public class UserInfo
-    {
-
-        [JsonProperty("data")]
-        public UserData UserData { get; set; }
-
-        [JsonProperty("status")]
-        public bool Status { get; set; }
-
-        public string RawJsonIfNotSuccessful { get; set; }
     }
 
 }

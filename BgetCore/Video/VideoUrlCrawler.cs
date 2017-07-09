@@ -7,6 +7,7 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Diagnostics;
 using BgetCore.Util;
+using BgetCore.Video.VideoResult;
 
 namespace BgetCore.Video
 {

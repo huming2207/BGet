@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Text;
 using System.Net.Http;
+using BgetCore.User.UserResult;
 using Newtonsoft.Json;
 
 namespace BgetCore.User
@@ -12,14 +13,13 @@ namespace BgetCore.User
         public async Task<UserInfo> GetUserInfoById(string userId)
         {
             // Declare HTTP client
-            var httpClient = new HttpClient()
+            var httpClient = new HttpClient
             {
-                BaseAddress = new Uri("http://space.bilibili.com")
+                BaseAddress = new Uri("http://space.bilibili.com"),
+                DefaultRequestHeaders = {Referrer = new Uri(string.Format("http://space.bilibili.com/{0}/", userId))}
             };
 
             // Referrer must be correctly set, otherwise they will reply HTTP 400.
-            httpClient.DefaultRequestHeaders.Referrer = 
-                new Uri(string.Format("http://space.bilibili.com/{0}/", userId));
 
             // POST content has two args, one is User ID (mid) 
             //      and the other is cross-site reference (csrf).

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace BgetCore.User
+namespace BgetCore.User.UserResult
 {
     public class VideoList
     {
@@ -57,28 +54,5 @@ namespace BgetCore.User
 
         [JsonProperty("hide_click")]
         public bool HideClick { get; set; }
-    }
-
-    public class UploadedVideo
-    {
-        [JsonProperty("vlist")]
-        public List<VideoList> VideoList { get; set; }
-
-        [JsonProperty("count")]
-        public int Count { get; set; }
-
-        [JsonProperty("pages")]
-        public int Pages { get; set; }
-    }
-
-    public class UserVideo
-    {
-        [JsonProperty("status")]
-        public bool Status { get; set; }
-
-        [JsonProperty("data")]
-        public UploadedVideo UploadedVideo { get; set; }
-
-        public string RawJsonIfNotSuccessful { get; set; }
     }
 }

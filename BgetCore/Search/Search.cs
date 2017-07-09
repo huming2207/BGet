@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using HtmlAgilityPack;
 using BgetCore.Video;
 using BgetCore.User;
+using BgetCore.User.UserResult;
 
 namespace BgetCore.Search
 {
@@ -98,7 +99,7 @@ namespace BgetCore.Search
             };
             
             // Get the raw JSON from API
-            string responseResultJson = string.Empty;
+            string responseResultJson;
             
             switch (searchType)
             {
