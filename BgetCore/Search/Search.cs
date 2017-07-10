@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
-using System.Runtime.InteropServices.ComTypes;
 using Newtonsoft.Json;
 using HtmlAgilityPack;
 using BgetCore.Video;
@@ -17,7 +17,7 @@ namespace BgetCore.Search
         public async Task<List<VideoInfo>> GetAllVideoInfoByKeyword(string keyword)
         {
             // Set initial page from page 1
-            int pageCount = 1;
+            var pageCount = 1;
             var videoInfoList = new List<VideoInfo>();
             var searchResult = await SearchByKeyword(keyword, SearchType.Video, pageCount);
 
@@ -50,7 +50,7 @@ namespace BgetCore.Search
         public async Task<List<UserInfo>> GetAllUserIdFromKeyword(string keyword)
         {
             // Set initial page from page 1
-            int pageCount = 1;
+            var pageCount = 1;
             var userInfoList = new List<UserInfo>();
             var searchResult = await SearchByKeyword(keyword, SearchType.UpUser, pageCount);
 
@@ -79,7 +79,7 @@ namespace BgetCore.Search
             return userInfoList;
         }
 
-        public async Task<SearchResult> SearchByKeyword(string keyword, SearchType searchType, int searchPage = 1)
+        private async Task<SearchResult> SearchByKeyword(string keyword, SearchType searchType, int searchPage = 1)
         {
             /* 
              * Search API format: 
@@ -95,9 +95,13 @@ namespace BgetCore.Search
             // Declare HTTP client, so far not necessary to set UA and/or Referrer
             var httpClient = new HttpClient()
             {
-                BaseAddress = new Uri("http://search.bilibili.com/ajax_api")
+                BaseAddress = new Uri("http://search.bilibili.com/ajax_api"),
             };
-            
+
+            // Force using Internet Explorer 10's user agent to get the flash version instead of pure HTML5 version
+            httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (MSIE 10.0; Windows NT 6.1; Trident/5.0)");
+
+
             // Get the raw JSON from API
             string responseResultJson;
             
@@ -157,6 +161,9 @@ namespace BgetCore.Search
                     responseResultJson = await httpClient.GetStringAsync(
                         string.Format("/video?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
                             searchPage.ToString(), DateTimeOffset.Now.ToUnixTimeMilliseconds()));
+
+                    Debug.WriteLine(string.Format("[Request URL] http://search.bilibili.com/ajax_api/video?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
+                        searchPage.ToString(), DateTimeOffset.Now.ToUnixTimeMilliseconds()));
                     break;
                 }
                 default:
