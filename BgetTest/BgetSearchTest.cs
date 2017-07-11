@@ -7,12 +7,6 @@ namespace BgetTest
 {
     public class BgetSearchTest
     {
-        private Search bSearch;
-
-        public BgetSearchTest()
-        {
-            bSearch = new Search();
-        }
 
         /// <summary>
         /// Try get Dami's phone review (大米评测) videos
@@ -21,6 +15,8 @@ namespace BgetTest
         [Fact]
         public async Task RunDamiVideoSearch()
         {
+            var bSearch = new Search();
+            
             var damiResult =
                 await bSearch.GetAllVideoInfoByKeyword("大米评测");
 
