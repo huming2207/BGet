@@ -93,14 +93,17 @@ namespace BgetCore.Search
              */
 
             // Declare HTTP client, so far not necessary to set UA and/or Referrer
+            // C# System.Net.HttpClient need to set a slash at the end of the BaseAddress URL to prevent some issues
+            //      Detail: https://stackoverflow.com/questions/23438416/why-is-httpclient-baseaddress-not-working
             var httpClient = new HttpClient()
             {
-                BaseAddress = new Uri("http://search.bilibili.com/ajax_api"),
+                BaseAddress = new Uri("http://search.bilibili.com/ajax_api/"),
+                
             };
 
             // Force using Internet Explorer 10's user agent to get the flash version instead of pure HTML5 version
             httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (MSIE 10.0; Windows NT 6.1; Trident/5.0)");
-
+            
 
             // Get the raw JSON from API
             string responseResultJson;
@@ -109,57 +112,89 @@ namespace BgetCore.Search
             {
                 case SearchType.Bangumi:
                 {
+                    httpClient.DefaultRequestHeaders.Referrer = 
+                            new Uri(string.Format("http://search.bilibili.com/ajax_api/bangumi?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
+                        searchPage.ToString(), DateTimeOffset.Now.ToUnixTimeMilliseconds()));
+
                     responseResultJson = await httpClient.GetStringAsync(
-                        string.Format("/bangumi?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
+                        string.Format("bangumi?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
                             searchPage.ToString(), DateTimeOffset.Now.ToUnixTimeMilliseconds()));
                     break;
                 }
                 case SearchType.Drawyoo:
                 {
-                    responseResultJson = await httpClient.GetStringAsync(
-                        string.Format("/drawyoo?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
+                    httpClient.DefaultRequestHeaders.Referrer =
+                        new Uri(string.Format("http://search.bilibili.com/ajax_api/drawyoo?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
+                            searchPage.ToString(), DateTimeOffset.Now.ToUnixTimeMilliseconds()));
+
+                        responseResultJson = await httpClient.GetStringAsync(
+                        string.Format("drawyoo?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
                             searchPage.ToString(), DateTimeOffset.Now.ToUnixTimeMilliseconds()));
                     break;
                 }
                 case SearchType.Live:
                 {
-                    responseResultJson = await httpClient.GetStringAsync(
-                        string.Format("/live?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
+                    httpClient.DefaultRequestHeaders.Referrer =
+                        new Uri(string.Format("http://search.bilibili.com/ajax_api/live?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
+                            searchPage.ToString(), DateTimeOffset.Now.ToUnixTimeMilliseconds()));
+
+                        responseResultJson = await httpClient.GetStringAsync(
+                        string.Format("live?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
                             searchPage.ToString(), DateTimeOffset.Now.ToUnixTimeMilliseconds()));
                     break;
                 }
                 case SearchType.Pgc:
                 {
+                    httpClient.DefaultRequestHeaders.Referrer =
+                        new Uri(string.Format("http://search.bilibili.com/ajax_api/pgc?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
+                            searchPage.ToString(), DateTimeOffset.Now.ToUnixTimeMilliseconds()));
+
                     responseResultJson = await httpClient.GetStringAsync(
-                        string.Format("/pgc?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
+                        string.Format("pgc?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
                             searchPage.ToString(), DateTimeOffset.Now.ToUnixTimeMilliseconds()));
                     break;
                 }
                 case SearchType.Special:
                 {
+                    httpClient.DefaultRequestHeaders.Referrer =
+                        new Uri(string.Format("http://search.bilibili.com/ajax_apispecial?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
+                            searchPage.ToString(), DateTimeOffset.Now.ToUnixTimeMilliseconds()));
+
                     responseResultJson = await httpClient.GetStringAsync(
-                        string.Format("/special?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
+                        string.Format("special?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
                             searchPage.ToString(), DateTimeOffset.Now.ToUnixTimeMilliseconds()));
                     break;
                 }
                 case SearchType.Topic:
                 {
+                    httpClient.DefaultRequestHeaders.Referrer =
+                        new Uri(string.Format("http://search.bilibili.com/ajax_api/topic?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
+                            searchPage.ToString(), DateTimeOffset.Now.ToUnixTimeMilliseconds()));
+
                     responseResultJson = await httpClient.GetStringAsync(
-                        string.Format("/topic?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
+                        string.Format("topic?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
                             searchPage.ToString(), DateTimeOffset.Now.ToUnixTimeMilliseconds()));
                     break;
                 }
                 case SearchType.UpUser:
                 {
+                    httpClient.DefaultRequestHeaders.Referrer =
+                        new Uri(string.Format("http://search.bilibili.com/ajax_api/upuser?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
+                            searchPage.ToString(), DateTimeOffset.Now.ToUnixTimeMilliseconds()));
+
                     responseResultJson = await httpClient.GetStringAsync(
-                        string.Format("/upuser?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
+                        string.Format("upuser?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
                             searchPage.ToString(), DateTimeOffset.Now.ToUnixTimeMilliseconds()));
                     break;
                 }
                 case SearchType.Video:
                 {
-                    responseResultJson = await httpClient.GetStringAsync(
-                        string.Format("/video?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
+                    httpClient.DefaultRequestHeaders.Referrer =
+                        new Uri(string.Format("http://search.bilibili.com/ajax_api/video?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
+                            searchPage.ToString(), DateTimeOffset.Now.ToUnixTimeMilliseconds()));
+
+                        responseResultJson = await httpClient.GetStringAsync(
+                        string.Format("video?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
                             searchPage.ToString(), DateTimeOffset.Now.ToUnixTimeMilliseconds()));
 
                     Debug.WriteLine(string.Format("[Request URL] http://search.bilibili.com/ajax_api/video?keyword={0}&page={1}&order=totalrank&_={2}", keyword,
