@@ -110,7 +110,7 @@ namespace BgetCore.Search
                 }
 
                 // Update page count and move to next page...
-                searchResult = await SearchByKeyword(keyword, SearchType.Video, ++pageCount);
+                searchResult = await SearchByKeyword(keyword, SearchType.UpUser, ++pageCount);
             }
 
             return userInfoList;
