@@ -37,7 +37,7 @@ namespace BgetTest
             var result = await _userVideoGrabber.GetAllVideoFromUser("99999999999999");
 
             Assert.NotNull(result);
-            Assert.True(!result[0].Status);
+            Assert.Equal(0, result.Count);
         }
     }
 }
