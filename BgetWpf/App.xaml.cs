@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using BgetWpf.Controller;
 
 namespace BgetWpf
 {
@@ -13,5 +14,20 @@ namespace BgetWpf
     /// </summary>
     public partial class App : Application
     {
+        protected override async void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            var ariaRunner = new AriaRunner();
+            await ariaRunner.Start();
+        }
+
+        protected override async void OnExit(ExitEventArgs e)
+        {
+            base.OnExit(e);
+
+            var ariaRunner = new AriaRunner();
+            await ariaRunner.();
+        }
     }
 }

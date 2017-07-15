@@ -67,7 +67,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AriaBinary.resx</DependentUpon>
     </Compile>
-    <Compile Include="Controller\AriaExtract.cs" />
+    <Compile Include="Controller\AriaRunner.cs" />
     <Compile Include="Controller\MainWindowController.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -75,6 +75,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\BgetTaskBinding.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

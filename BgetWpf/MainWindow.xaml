@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BgetWpf"
         mc:Ignorable="d"
-        Title="BGet for Windows" Height="450" Width="650">
+        Title="BrinkGet for Windows" Height="450" Width="650">
     <Grid>
         <TabControl HorizontalAlignment="Left" Height="412" VerticalAlignment="Top" Width="630">
             <!--Tab item starts: Add Task-->
@@ -13,10 +13,11 @@
                 <Grid Background="White" >
                     <TextBox x:Name="AddTaskUrlTextbox" HorizontalAlignment="Left" Height="34" Margin="48,45,0,0" 
                              TextWrapping="Wrap" Text="http://" VerticalAlignment="Top" Width="526" FontSize="20"/>
-                    <Button x:Name="AddTaskButton" Content="Go" HorizontalAlignment="Left" Margin="48,95,0,0" VerticalAlignment="Top" Width="526" Height="47" />
+                    <Button x:Name="AddTaskButton" Content="Go" HorizontalAlignment="Left" Margin="48,108,0,0" VerticalAlignment="Top" Width="526" Height="47" />
                     <TextBlock Text="Hint: You can type in video URL, 
                                     user URL or channel URL. This app will automatically detect what you have input." 
                                HorizontalAlignment="Left" Margin="48,331,0,0"  VerticalAlignment="Top" Height="43" Width="526" Foreground="Gray" TextWrapping="Wrap"/>
+                    <Button x:Name="AddTorrentTaskButton" Content="Add a torrent from file" HorizontalAlignment="Left" Margin="48,160,0,0" VerticalAlignment="Top" Width="526" Height="47" />
                 </Grid>
 
             </TabItem>
@@ -28,8 +29,8 @@
                     <ListView x:Name="DownloadTaskList">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Video Title" Width="250" DisplayMemberBinding="{Binding VideoTitle}"/>
-                                <GridViewColumn Header="Video ID" Width="125" DisplayMemberBinding="{Binding VideoID}"/>
+                                <GridViewColumn Header="Task ID" Width="125" DisplayMemberBinding="{Binding TaskID}"/>
+                                <GridViewColumn Header="Task Title" Width="250" DisplayMemberBinding="{Binding TaskTitle}"/>
                                 <GridViewColumn Header="Status" Width="105">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
