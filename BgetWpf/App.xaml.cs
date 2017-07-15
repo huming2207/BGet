@@ -27,7 +27,7 @@ namespace BgetWpf
             base.OnExit(e);
 
             var ariaRunner = new AriaRunner();
-            await ariaRunner.();
+            await ariaRunner.Stop();
         }
     }
 }
