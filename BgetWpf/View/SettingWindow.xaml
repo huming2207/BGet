@@ -1,0 +1,165 @@
+﻿<Window x:Class="BgetWpf.View.SettingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BgetWpf.View"
+        mc:Ignorable="d"
+        Title="BrinkGet Settings" Height="315" Width="515">
+    <Grid>
+        <TabControl HorizontalAlignment="Left" Height="270" VerticalAlignment="Top" Width="500">
+            <TabItem Header="Video Sites">
+                <Grid Background="White">
+                    <GroupBox Header="Preferred file format" HorizontalAlignment="Left" Height="96" Margin="10,10,0,0" VerticalAlignment="Top" Width="158">
+                        <Grid>
+                            <RadioButton x:Name="FlvFileFormatRadioButton" Content="FLV container" HorizontalAlignment="Left" Margin="21,18,0,0" VerticalAlignment="Top"/>
+                            <RadioButton x:Name="Mp4FileFormatRadioButton" Content="MP4 container" HorizontalAlignment="Left" Margin="21,38,0,0" VerticalAlignment="Top"/>
+                        </Grid>
+                    </GroupBox>
+
+                    <!--Preferred quality groupbox-->
+                    <GroupBox Header="Preferred quality" HorizontalAlignment="Left" Height="96" Margin="173,10,0,0" VerticalAlignment="Top" Width="129">
+                        <Grid>
+                            <RadioButton x:Name="HighQualityRadioButton" Content="High" HorizontalAlignment="Left" Margin="21,10,0,0" VerticalAlignment="Top"/>
+                            <RadioButton x:Name="MediumQualityRadioButton" Content="Medium" HorizontalAlignment="Left" Margin="21,30,0,0" VerticalAlignment="Top"/>
+                            <RadioButton x:Name="LowQualityRadioButton" Content="Low" HorizontalAlignment="Left" Margin="21,50,0,0" VerticalAlignment="Top"/>
+                        </Grid>
+                    </GroupBox>
+
+                    <!--Aria2 JSON RPC groupbox-->
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="General">
+                <Grid Background="White">
+                    <!-- Concurrent task groupbox -->
+                    <GroupBox Header="Concurrent task" HorizontalAlignment="Left" Height="89" Margin="10,10,0,0" VerticalAlignment="Top" Width="213">
+                        <Grid>
+                            <TextBox x:Name="ManualParallelTaskTextbox" PreviewTextInput="InputValidate_NumOnly" HorizontalAlignment="Left" Height="22" Margin="160,39,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="31" RenderTransformOrigin="0.522,0.03"/>
+                            <CheckBox x:Name="AutoParallelTaskCheckbox"  Content="Let Aria2 decide for me" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Width="150"/>
+                            <Label Content="Maximum concurrent task: " HorizontalAlignment="Left" Margin="6,35,0,0" VerticalAlignment="Top" Width="150"/>
+                        </Grid>
+                    </GroupBox>
+
+                    <!-- Multithreading groupbox -->
+                    <GroupBox x:Name="MultiThreadingGroupBox" Header="Multi-threading" HorizontalAlignment="Left" Height="89" Margin="228,10,0,0" VerticalAlignment="Top" Width="256">
+                        <Grid>
+                            <Label Content="Max. connection per server:" HorizontalAlignment="Left" Margin="31,6,0,0" VerticalAlignment="Top"/>
+                            <Label Content="Split:" HorizontalAlignment="Left" Margin="151,37,0,0" VerticalAlignment="Top"/>
+                            <TextBox x:Name="MaxConnectionTextbox" HorizontalAlignment="Left" Height="23" Margin="191,9,0,0" TextWrapping="Wrap" Text="15" VerticalAlignment="Top" Width="28"/>
+                            <TextBox x:Name="SplitCountTextbox" HorizontalAlignment="Left" Height="23" Margin="192,40,0,0" TextWrapping="Wrap" Text="15" VerticalAlignment="Top" Width="28"/>
+
+                        </Grid>
+                    </GroupBox>
+
+                    <!-- Disk cache groupbox -->
+                    <GroupBox Header="Disk cache" HorizontalAlignment="Left" Height="67" Margin="10,104,0,0" VerticalAlignment="Top" Width="131">
+                        <Grid Margin="0,0,0,3">
+                            <TextBox x:Name="DiskCacheTextbox" HorizontalAlignment="Left" Height="23" Margin="22,10,0,0" TextWrapping="Wrap" Text="32" VerticalAlignment="Top" Width="41"/>
+                            <Label Content="MB" HorizontalAlignment="Left" Margin="68,6,0,0" VerticalAlignment="Top"/>
+                        </Grid>
+                    </GroupBox>
+
+                    <!-- Download path groupbox -->
+                    <GroupBox Header="Download path" HorizontalAlignment="Left" Height="55" Margin="10,177,0,0" VerticalAlignment="Top" Width="474">
+                        <Grid Margin="0,0,-2,0">
+                            <TextBox x:Name="DownloadPathTextbox" HorizontalAlignment="Left" Height="23" Margin="27,5,0,0" TextWrapping="Wrap" Text="C:\" VerticalAlignment="Top" Width="303"/>
+                            <Button x:Name="DownloadPathSetButton" Content="Set" HorizontalAlignment="Left" Margin="399,5,0,0" VerticalAlignment="Top" Width="55" Height="23"/>
+                            <Button x:Name="DownloadPathLocateButton" Content="Locate" HorizontalAlignment="Left" Margin="335,5,0,0" VerticalAlignment="Top" Width="59" Height="23"/>
+                        </Grid>
+                    </GroupBox>
+
+                    <!-- Limits -->
+                    <GroupBox Header="Limits" HorizontalAlignment="Left" Margin="146,104,0,71" Width="338">
+                        <Grid>
+                            <TextBox HorizontalAlignment="Left" Height="23" Margin="98,10,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="50"/>
+                            <Label Content="Upload (KB/s): " HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top"/>
+                            <TextBox HorizontalAlignment="Left" Height="23" Margin="257,11,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="50"/>
+                            <Label Content="Download (KB/s): " HorizontalAlignment="Left" Margin="152,8,0,0" VerticalAlignment="Top" Width="100"/>
+
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Torrenting">
+                <Grid>
+                    <GroupBox Header="Privacy" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="132">
+                        <Grid>
+                            <CheckBox x:Name="EnableDhtCheckBox"  Content="Enable DHT" HorizontalAlignment="Left" Margin="21,10,0,0" VerticalAlignment="Top"/>
+                            <CheckBox x:Name="EnablePexCheckBox" Content="Enable PEX" HorizontalAlignment="Left" Margin="21,30,0,0" VerticalAlignment="Top"/>
+                            <CheckBox x:Name="EnableLpdCheckBox" Content="Enable LPD" HorizontalAlignment="Left" Margin="21,50,0,0" VerticalAlignment="Top"/>
+
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Encryption" HorizontalAlignment="Left" Height="100" Margin="147,10,0,0" VerticalAlignment="Top" Width="147">
+                        <Grid>
+                            <CheckBox x:Name="EnableArcEncryptionCheckBox" Content="Enable encryption" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top"/>
+                            <CheckBox x:Name="ForceEncryptionCheckBox" Content="Force encrypt" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
+
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="...make some fake news" HorizontalAlignment="Left" Height="117" Margin="10,115,0,0" VerticalAlignment="Top" Width="300">
+                        <Grid>
+                            <Label Content="Peer ID perfix: " HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top"/>
+
+                            <TextBox  x:Name="FakePeerPerfixTextbox" HorizontalAlignment="Left" Height="23" Margin="96,9,0,0" TextWrapping="Wrap" Text="-UT341-" VerticalAlignment="Top" Width="184"/>
+                            <TextBox  x:Name="FakeBtUaIextbox" HorizontalAlignment="Left" Height="23" Margin="96,46,0,0" TextWrapping="Wrap" Text="uTorrent/341(109279400)(30888)" VerticalAlignment="Top" Width="184" RenderTransformOrigin="0.202,1.203"/>
+                            <TextBlock HorizontalAlignment="Left" Margin="12,37,0,0" TextWrapping="Wrap" Text="User Agent in BitTorrent Task: " VerticalAlignment="Top" Width="84"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Integrity Check" HorizontalAlignment="Left" Height="100" Margin="299,10,0,0" VerticalAlignment="Top" Width="185">
+                        <Grid>
+                            <CheckBox x:Name="EnableArcEncryptionCheckBox2" Content="Check before seeding" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                            <CheckBox x:Name="ForceEncryptionCheckBox2" Content="Seed even if broken" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Miscellaneous stuff" Margin="315,115,10,10">
+                        <Grid>
+                            <Label Content="Port:" HorizontalAlignment="Left" Margin="40,5,0,0" VerticalAlignment="Top"/>
+                            <TextBox HorizontalAlignment="Left" Height="23" Margin="79,8,0,0" TextWrapping="Wrap" Text="25236" VerticalAlignment="Top" Width="42"/>
+                            <Label Content="Seed ratio:" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top"/>
+                            <TextBox HorizontalAlignment="Left" Height="23" Margin="79,66,0,0" TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="42"/>
+                            <Label Content="Max. Peers:" HorizontalAlignment="Left" Margin="6,35,0,0" VerticalAlignment="Top"/>
+                            <TextBox HorizontalAlignment="Left" Height="23" Margin="80,38,0,0" TextWrapping="Wrap" Text="500" VerticalAlignment="Top" Width="41"/>
+
+                        </Grid>
+                    </GroupBox>
+
+                </Grid>
+            </TabItem>
+
+
+            <TabItem Header="Aria2 Executable">
+                <Grid>
+                    <GroupBox Header="Aria2 JSON-RPC" HorizontalAlignment="Left" Height="93" Margin="10,10,0,0" VerticalAlignment="Top" Width="473">
+                        <Grid>
+                            <RadioButton x:Name="BundledAria2RadioButton" Content="Use bundled Aria2" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top" Width="184"/>
+                            <RadioButton x:Name="ExtAria2RadioButton" Content="Use external Aria2" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" Width="184"/>
+                            <Label Content="URL: " HorizontalAlignment="Left" Margin="184,37,0,0" VerticalAlignment="Top"/>
+                            <Label Content="Architecture: " HorizontalAlignment="Left" Margin="141,6,0,0" VerticalAlignment="Top"/>
+                            <ComboBox HorizontalAlignment="Left" Margin="221,9,0,0" VerticalAlignment="Top" Width="73"/>
+                            <TextBox HorizontalAlignment="Left" Height="23" Margin="221,40,0,0" TextWrapping="Wrap" Text="http://localhost:6800/jsonrpc" VerticalAlignment="Top" Width="171"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Extra commandline arguments" Margin="10,120,11,10">
+                        <TextBox Margin="10,10,15,7" x:Name="ExtraCmdArgTextbox"></TextBox>
+                    </GroupBox>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Save and Exit">
+                <Grid>
+                    <Button Content="Save and reload settings" HorizontalAlignment="Left" Margin="119,64,0,0" VerticalAlignment="Top" Width="253" Height="44"/>
+                    <Button Content="Reset settings" HorizontalAlignment="Left" Margin="119,123,0,0" VerticalAlignment="Top" Width="253" Height="44"/>
+
+                </Grid>
+            </TabItem>    
+
+            
+
+        </TabControl>
+
+    </Grid>
+</Window>
