@@ -36,7 +36,7 @@
                     <!-- Concurrent task groupbox -->
                     <GroupBox Header="Concurrent task" HorizontalAlignment="Left" Height="89" Margin="10,10,0,0" VerticalAlignment="Top" Width="213">
                         <Grid>
-                            <TextBox x:Name="ManualParallelTaskTextbox" PreviewTextInput="InputValidate_NumOnly" HorizontalAlignment="Left" Height="22" Margin="160,39,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="31" RenderTransformOrigin="0.522,0.03"/>
+                            <TextBox x:Name="ManualParallelTaskTextbox" HorizontalAlignment="Left" Height="22" Margin="160,39,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="31" RenderTransformOrigin="0.522,0.03"/>
                             <CheckBox x:Name="AutoParallelTaskCheckbox"  Content="Let Aria2 decide for me" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Width="150"/>
                             <Label Content="Maximum concurrent task: " HorizontalAlignment="Left" Margin="6,35,0,0" VerticalAlignment="Top" Width="150"/>
                         </Grid>

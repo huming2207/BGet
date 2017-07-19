@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BgetWpf.View"
         mc:Ignorable="d"
-        Title="AboutWindow" Height="450" Width="650">
+        Title="About BrinkGet" Height="450" Width="650">
     <Grid>
 
                 <Label Content="BrinkGet" HorizontalAlignment="Left" Margin="33,17,0,0" VerticalAlignment="Top" FontSize="36" FontWeight="Bold"/>
