@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BgetWpf.View"
         mc:Ignorable="d"
-        Title="AddTaskWindow" Height="300" Width="650">
+        Title="Add tasks" Height="300" Width="650">
     <Grid>
         <TextBox x:Name="AddTaskUrlTextbox" HorizontalAlignment="Left" Height="34" Margin="48,45,0,0" 
                  TextWrapping="Wrap" Text="http://" VerticalAlignment="Top" Width="530" FontSize="20"/>
