@@ -65,6 +65,13 @@ namespace BgetWpf.Model
 
         [JsonProperty("down_path")]
         public string DownloadPath { get; set; }
+
+        // Hidden easter egg: Set default user agent
+        // if empty, this app will set to:
+        //      Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)
+        // Btw this setting will not affect BT download tasks.
+        [JsonProperty("default_user_agent")]
+        public string DefaultUserAgent { get; set; }
     }
 
     public class TorrentSetting
