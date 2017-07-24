@@ -58,9 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controller\SettingController.cs" />
     <Compile Include="Model\ConstValue.cs" />
-    <Compile Include="Model\Setting.cs" />
     <Compile Include="Resources\IconResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

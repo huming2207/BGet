@@ -22,5 +22,377 @@ namespace BgetWpf.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PreferFlv {
+            get {
+                return ((bool)(this["PreferFlv"]));
+            }
+            set {
+                this["PreferFlv"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool PreferMp4 {
+            get {
+                return ((bool)(this["PreferMp4"]));
+            }
+            set {
+                this["PreferMp4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool PreferHighQuality {
+            get {
+                return ((bool)(this["PreferHighQuality"]));
+            }
+            set {
+                this["PreferHighQuality"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PreferMediumQuality {
+            get {
+                return ((bool)(this["PreferMediumQuality"]));
+            }
+            set {
+                this["PreferMediumQuality"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PreferLowQuality {
+            get {
+                return ((bool)(this["PreferLowQuality"]));
+            }
+            set {
+                this["PreferLowQuality"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AutoDecideConcurrentTask {
+            get {
+                return ((bool)(this["AutoDecideConcurrentTask"]));
+            }
+            set {
+                this["AutoDecideConcurrentTask"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ManualConcurrentTask {
+            get {
+                return ((string)(this["ManualConcurrentTask"]));
+            }
+            set {
+                this["ManualConcurrentTask"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public string MaxConnPerServer {
+            get {
+                return ((string)(this["MaxConnPerServer"]));
+            }
+            set {
+                this["MaxConnPerServer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public string SplitPerTask {
+            get {
+                return ((string)(this["SplitPerTask"]));
+            }
+            set {
+                this["SplitPerTask"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("32")]
+        public string DiskCache {
+            get {
+                return ((string)(this["DiskCache"]));
+            }
+            set {
+                this["DiskCache"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string GlobalUploadLimit {
+            get {
+                return ((string)(this["GlobalUploadLimit"]));
+            }
+            set {
+                this["GlobalUploadLimit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string GlobalDownloadLimit {
+            get {
+                return ((string)(this["GlobalDownloadLimit"]));
+            }
+            set {
+                this["GlobalDownloadLimit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DownloadPath {
+            get {
+                return ((string)(this["DownloadPath"]));
+            }
+            set {
+                this["DownloadPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool EnableDht {
+            get {
+                return ((bool)(this["EnableDht"]));
+            }
+            set {
+                this["EnableDht"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool EnablePex {
+            get {
+                return ((bool)(this["EnablePex"]));
+            }
+            set {
+                this["EnablePex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool EnableLpd {
+            get {
+                return ((bool)(this["EnableLpd"]));
+            }
+            set {
+                this["EnableLpd"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool EnableEncrypt {
+            get {
+                return ((bool)(this["EnableEncrypt"]));
+            }
+            set {
+                this["EnableEncrypt"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ForceEncrypt {
+            get {
+                return ((bool)(this["ForceEncrypt"]));
+            }
+            set {
+                this["ForceEncrypt"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CheckBeforeSeed {
+            get {
+                return ((bool)(this["CheckBeforeSeed"]));
+            }
+            set {
+                this["CheckBeforeSeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public string SeedWhenBroken {
+            get {
+                return ((string)(this["SeedWhenBroken"]));
+            }
+            set {
+                this["SeedWhenBroken"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-UT341-")]
+        public string PeerIdPerfix {
+            get {
+                return ((string)(this["PeerIdPerfix"]));
+            }
+            set {
+                this["PeerIdPerfix"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("uTorrent/341(109279400)(30888)")]
+        public string TorrentUserAgent {
+            get {
+                return ((string)(this["TorrentUserAgent"]));
+            }
+            set {
+                this["TorrentUserAgent"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("25236")]
+        public string TorrentPort {
+            get {
+                return ((string)(this["TorrentPort"]));
+            }
+            set {
+                this["TorrentPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("500")]
+        public string MaxPeers {
+            get {
+                return ((string)(this["MaxPeers"]));
+            }
+            set {
+                this["MaxPeers"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.0")]
+        public string SeedRatio {
+            get {
+                return ((string)(this["SeedRatio"]));
+            }
+            set {
+                this["SeedRatio"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UseBundledAria {
+            get {
+                return ((bool)(this["UseBundledAria"]));
+            }
+            set {
+                this["UseBundledAria"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseExternalAria {
+            get {
+                return ((bool)(this["UseExternalAria"]));
+            }
+            set {
+                this["UseExternalAria"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int Architecture {
+            get {
+                return ((int)(this["Architecture"]));
+            }
+            set {
+                this["Architecture"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:6800/jsonrpc")]
+        public string ExternalRpc {
+            get {
+                return ((string)(this["ExternalRpc"]));
+            }
+            set {
+                this["ExternalRpc"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ExtraCmdArgs {
+            get {
+                return ((string)(this["ExtraCmdArgs"]));
+            }
+            set {
+                this["ExtraCmdArgs"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)")]
+        public string DefaultUserAgent {
+            get {
+                return ((string)(this["DefaultUserAgent"]));
+            }
+            set {
+                this["DefaultUserAgent"] = value;
+            }
+        }
     }
 }

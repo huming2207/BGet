@@ -29,5 +29,10 @@ namespace BgetWpf
             var ariaRunner = new AriaRunner();
             await ariaRunner.Stop();
         }
+
+        private void App_OnExit(object sender, ExitEventArgs e)
+        {
+            BgetWpf.Properties.Settings.Default.Save();
+        }
     }
 }

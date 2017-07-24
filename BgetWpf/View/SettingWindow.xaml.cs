@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BgetWpf.Controller;
 
 namespace BgetWpf.View
 {
@@ -19,9 +21,9 @@ namespace BgetWpf.View
     /// </summary>
     public partial class SettingWindow : Window
     {
-        public SettingWindow()
+        private void SettingWindow_OnClosing(object sender, CancelEventArgs e)
         {
-            InitializeComponent();
+            Properties.Settings.Default.Save();
         }
     }
 }

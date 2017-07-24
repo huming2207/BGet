@@ -2,8 +2,10 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:BgetWpf"
-             StartupUri="View/MainWindow.xaml">
+             xmlns:properties="clr-namespace:BgetWpf.Properties"
+             StartupUri="View/MainWindow.xaml"
+             Exit="App_OnExit">
     <Application.Resources>
-         
+        <properties:Settings x:Key="Settings"></properties:Settings>
     </Application.Resources>
 </Application>
