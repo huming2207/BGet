@@ -58,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\BgetModel.cs" />
     <Compile Include="Model\ConstValue.cs" />
     <Compile Include="Resources\IconResource.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -143,6 +144,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BgetCore\BgetCore.csproj">
+      <Project>{e6c95993-9b31-4ca6-8e96-ebdeb91a1dcd}</Project>
+      <Name>BgetCore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
