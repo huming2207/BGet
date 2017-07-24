@@ -25,5 +25,10 @@ namespace BgetWpf.View
         {
             Properties.Settings.Default.Save();
         }
+
+        private void SaveEvent(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.Save();
+        }
     }
 }

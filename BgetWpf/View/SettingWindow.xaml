@@ -6,7 +6,10 @@
         mc:Ignorable="d"
         Closing="SettingWindow_OnClosing"
         Title="BrinkGet Settings" Height="315" Width="515">
-    <Grid>
+    
+    <!-- Add some routed event here to save the settings when user make changes automatically
+         Reference: https://docs.microsoft.com/en-us/dotnet/framework/wpf/advanced/routed-events-overview -->
+    <Grid Button.Click="SaveEvent" CheckBox.Checked="SaveEvent" CheckBox.Unchecked="SaveEvent" LostFocus="SaveEvent">
         <!-- For user setting bindings, please refer to: https://blogs.msdn.microsoft.com/patrickdanino/2008/07/23/user-settings-in-wpf/ -->
         <TabControl HorizontalAlignment="Left" Height="270" VerticalAlignment="Top" Width="500">
             <TabItem Header="Video Sites">
