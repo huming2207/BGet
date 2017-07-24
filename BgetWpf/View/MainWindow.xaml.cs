@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
+using BgetWpf.View;
 
 namespace BgetWpf
 {
@@ -33,35 +34,40 @@ namespace BgetWpf
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        /// <summary>
-        /// This method is to prevent user to click some empty lines and causes some null ref exceptions
-        /// See here: https://stackoverflow.com/questions/9549231/how-to-right-click-on-item-from-listbox-and-open-menu-on-wpf
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DownloadTaskList_OnMouseDown(object sender, MouseButtonEventArgs e)
+        private void AddTaskButton_OnClick(object sender, RoutedEventArgs e)
         {
-            DownloadTaskList.UnselectAll();
+            var addTaskWindow = new AddTaskWindow();
+            addTaskWindow.Show();
         }
 
-        private void TaskListPauseMenuItem_OnClick(object sender, RoutedEventArgs e)
+        private void PauseButton_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
-        private void TaskListRestartMenuItem_OnClick(object sender, RoutedEventArgs e)
+        private void StartTaskButton_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
-        private void TaskListStopMenuItem_OnClick(object sender, RoutedEventArgs e)
+        private void RemoveTaskButton_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
-        private void TaskListStopAndDeleteMenuItem_OnClick(object sender, RoutedEventArgs e)
+        private void DeleteTaskButton_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            
+        }
+
+        private void SettingButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void AboutButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

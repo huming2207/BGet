@@ -9,7 +9,8 @@
     <Grid>
         <TextBox x:Name="AddTaskUrlTextbox" HorizontalAlignment="Left" Height="34" Margin="48,45,0,0" 
                  TextWrapping="Wrap" Text="http://" VerticalAlignment="Top" Width="530" FontSize="20"/>
-        <Button x:Name="AddTaskButton" Content="Go" HorizontalAlignment="Left" Margin="48,108,0,0" VerticalAlignment="Top" Width="530" Height="47" />
+        <Button x:Name="AddTaskButton" Content="Go" HorizontalAlignment="Left" Margin="48,108,0,0" 
+                VerticalAlignment="Top" Width="530" Height="47" Click="AddTaskButton_OnClick"/>
         <TextBlock Text="Hint: You can type in video URL, user URL or channel URL. This app will automatically detect what you have input." 
                    HorizontalAlignment="Left" Margin="48,220,0,0"  VerticalAlignment="Top" Height="42" Width="526" Foreground="Gray" TextWrapping="Wrap"/>
         <Button x:Name="LoadFromFileButton" Content="Load from file" HorizontalAlignment="Left" Margin="48,160,0,0" VerticalAlignment="Top" Width="530" Height="47" />

@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BgetCore.User.UserResult;
+using BgetCore.Video;
 
 namespace BgetWpf.View
 {
@@ -23,5 +25,12 @@ namespace BgetWpf.View
         {
             InitializeComponent();
         }
+
+        private async void AddTaskButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+
     }
 }
