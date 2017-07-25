@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BgetCore.User.UserResult;
 using BgetCore.Video;
+using BgetWpf.Model;
 
 namespace BgetWpf.View
 {
@@ -32,5 +33,10 @@ namespace BgetWpf.View
         }
 
 
+        private void AddTaskWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            var addTaskButtonTitle = new BgetAddTaskBinding { ButtonContent = "Add task" };
+            AddTaskButton.DataContext = addTaskButtonTitle;
+        }
     }
 }

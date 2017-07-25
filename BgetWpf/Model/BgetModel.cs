@@ -21,7 +21,7 @@ namespace BgetWpf.Model
         /// </summary>
         /// <param name="contentUrl"></param>
         /// <returns></returns>
-        private async Task<List<string>> GenerateGeneralVideoLink(string contentUrl)
+        public async Task<List<string>> GenerateGeneralVideoLink(string contentUrl)
         {
             // BGetCore library related stuff
             var videoInfoCrawler = new VideoInfoCrawler();
@@ -55,12 +55,12 @@ namespace BgetWpf.Model
         /// 1. UserAgent (MSIE10) and Referrer must be set to the downloader, otherwise server will return 500
         /// 2. Exception may be raised if something goes wrong (e.g. no video found)
         /// 3. Status reporting example is here: https://stackoverflow.com/questions/19980112/how-to-do-progress-reporting-using-async-await/19980151#19980151
-        ///     The format is 
+        ///     It's a two-element double array. The first is the page status and the second is the video status
         /// </summary>
         /// <param name="contentUrl"></param>
         /// <param name="progressStatus"></param>
         /// <returns></returns>
-        private async Task<List<string>> GenerateUserVideoLink(string contentUrl, IProgress<double[]> progressStatus)
+        public async Task<List<string>> GenerateUserVideoLink(string contentUrl, IProgress<double[]> progressStatus)
         {
             // BGet library related stuff
             var userVideoGrabber = new UserVideoGrabber();

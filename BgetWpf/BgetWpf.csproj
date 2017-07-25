@@ -58,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\BgetAddTaskBinding.cs" />
     <Compile Include="Model\BgetModel.cs" />
     <Compile Include="Model\ConstValue.cs" />
     <Compile Include="Resources\IconResource.Designer.cs">
