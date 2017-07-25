@@ -35,7 +35,7 @@ namespace BgetCore.User.UserResult
         public string Author { get; set; }
 
         [JsonProperty("mid")]
-        public int Mid { get; set; }
+        public string MId { get; set; }
 
         [JsonProperty("created")]
         public int Created { get; set; }
@@ -50,7 +50,7 @@ namespace BgetCore.User.UserResult
         public int Favorites { get; set; }
 
         [JsonProperty("aid")]
-        public int VideoId { get; set; }
+        public string ContentId { get; set; }
 
         [JsonProperty("hide_click")]
         public bool HideClick { get; set; }

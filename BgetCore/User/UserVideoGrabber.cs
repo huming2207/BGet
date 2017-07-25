@@ -32,6 +32,14 @@ namespace BgetCore.User
 
         public async Task<UserVideo> GetVideoFromUser(string userId, int pageSize = 30, int page = 1, string keyword = "")
         {
+            // If user inputs a user URL then only ID should be reserved.
+            // Normally the format is "http(s)://space.bilibili.com/123456",
+            // Remove the "http://" and "https://" then do a split to get the User ID
+            if (userId.Contains("http"))
+            {
+                userId = userId.Replace("http://", "").Replace("https://", "").Split('/')[1];
+            }
+
             // Declare HTTP client
             var httpClient = new HttpClient()
             {
