@@ -8,10 +8,25 @@ using BgetCore.User;
 using BgetCore.User.UserResult;
 using BgetCore.Video;
 
-namespace BgetWpf.Model
+namespace BgetWpf.Controller
 {
-    public class BgetModel
+    public class DownloadTaskSeparator
     {
+        /// <summary>
+        /// The main method for this class, import the URL and sparate automatically.
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public async Task TaskHandler(string url, IProgress<double[]> progressStatus)
+        {
+            
+        }
+
+        private async Task AddTaskToAria(List<string> urlList, IProgress<double[]> progressStatus)
+        {
+            
+        }
+
         /// <summary>
         /// Generate video link
         /// 
@@ -21,7 +36,7 @@ namespace BgetWpf.Model
         /// </summary>
         /// <param name="contentUrl"></param>
         /// <returns></returns>
-        public async Task<List<string>> GenerateGeneralVideoLink(string contentUrl)
+        private async Task<List<string>> GenerateGeneralVideoLink(string contentUrl)
         {
             // BGetCore library related stuff
             var videoInfoCrawler = new VideoInfoCrawler();
@@ -60,7 +75,7 @@ namespace BgetWpf.Model
         /// <param name="contentUrl"></param>
         /// <param name="progressStatus"></param>
         /// <returns></returns>
-        public async Task<List<string>> GenerateUserVideoLink(string contentUrl, IProgress<double[]> progressStatus)
+        private async Task<List<string>> GenerateUserVideoLink(string contentUrl, IProgress<double[]> progressStatus)
         {
             // BGet library related stuff
             var userVideoGrabber = new UserVideoGrabber();
