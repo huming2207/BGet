@@ -43,11 +43,8 @@
                     <!-- Concurrent task groupbox -->
                     <GroupBox Header="Concurrent task" HorizontalAlignment="Left" Height="89" Margin="10,10,0,0" VerticalAlignment="Top" Width="213">
                         <Grid>
-                            <TextBox x:Name="ManualParallelTaskTextbox" Text="{Binding Source={StaticResource Settings}, Path=Default.ManualConcurrentTask, Mode=TwoWay}"
-                                     HorizontalAlignment="Left" Height="22" Margin="160,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="31" RenderTransformOrigin="0.522,0.03"/>
                             <CheckBox x:Name="AutoParallelTaskCheckbox" IsChecked="{Binding Source={StaticResource Settings}, Path=Default.AutoDecideConcurrentTask, Mode=TwoWay}"
-                                      Content="Let Aria2 decide for me" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Width="150"/>
-                            <Label Content="Maximum concurrent task: " HorizontalAlignment="Left" Margin="6,35,0,0" VerticalAlignment="Top" Width="150"/>
+                                      Content="Auto optimize concurrent task" HorizontalAlignment="Left" Margin="10,23,0,0" VerticalAlignment="Top" Width="181"/>
                         </Grid>
                     </GroupBox>
 
