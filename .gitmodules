@@ -1,0 +1,3 @@
+[submodule "AriaNet"]
+	path = AriaNet
+	url = git@github.com:huming2207/AriaNet.git
