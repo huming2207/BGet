@@ -95,5 +95,8 @@
     <Setting Name="DefaultUserAgent" Type="System.String" Scope="User">
       <Value Profile="(Default)">Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)</Value>
     </Setting>
+    <Setting Name="ResetConfig" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

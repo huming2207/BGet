@@ -394,5 +394,17 @@ namespace BgetWpf.Properties {
                 this["DefaultUserAgent"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ResetConfig {
+            get {
+                return ((bool)(this["ResetConfig"]));
+            }
+            set {
+                this["ResetConfig"] = value;
+            }
+        }
     }
 }

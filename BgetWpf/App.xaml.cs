@@ -17,7 +17,7 @@ namespace BgetWpf
         protected override async void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-
+            
             var ariaRunner = new AriaRunner();
             await ariaRunner.Start();
         }

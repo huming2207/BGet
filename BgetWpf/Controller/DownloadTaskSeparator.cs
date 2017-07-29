@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BgetCore.User;
 using BgetCore.User.UserResult;
@@ -19,7 +20,36 @@ namespace BgetWpf.Controller
         /// <returns></returns>
         public async Task TaskHandler(string url, IProgress<double[]> progressStatus)
         {
-            
+            // Case 1: Single Bilibili video
+            if (Regex.IsMatch(url, @"bilibili.com/video/av(\d+)"))
+            {
+                
+            }
+
+            // Case 2: A user and his/her videos
+            else if (Regex.IsMatch(url, @"space.bilibili.com/(\d+)"))
+            {
+                
+            }
+
+            // Case 3: Aria2 commandline
+            else if(Regex.IsMatch(url, @"^(aria2c).*http(s?)://"))
+            {
+                
+            }
+
+            // Case 4: Normal task
+            else if (Regex.IsMatch(url, @"^http(s?)://"))
+            {
+                
+            }
+
+            // Case 5: Don't know wtf is this...
+            else
+            {
+                progressStatus.Report(new[]{-999d,-999d});
+                return;
+            }
         }
 
         private async Task AddTaskToAria(List<string> urlList, IProgress<double[]> progressStatus)

@@ -62,7 +62,8 @@ namespace BgetWpf
 
         private void SettingButton_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            var settingWindow = new SettingWindow();
+            settingWindow.Show();
         }
 
         private void AboutButton_OnClick(object sender, RoutedEventArgs e)

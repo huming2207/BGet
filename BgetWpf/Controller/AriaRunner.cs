@@ -5,6 +5,7 @@ using System.IO.Compression;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
+using AriaNet.Aria;
 
 namespace BgetWpf.Controller
 {
@@ -18,7 +19,6 @@ namespace BgetWpf.Controller
         {
             // The newest way to get CPU architecture, even Mono is supported (but sadly, it doesn't support WPF)
             // See here for more details: https://stackoverflow.com/questions/767613/identifying-the-cpu-architecture-type-using-c-sharp
-
             typeof(object).Module.GetPEKind(out PortableExecutableKinds portableExecutableKinds, out ImageFileMachine imageFileMachine);
             Directory.CreateDirectory("bget_temp");
 
@@ -29,22 +29,67 @@ namespace BgetWpf.Controller
                     await ExtractAriaBinary("bget_temp/aria2.exe", AriaBinary.Aria32);
                     break;
                 }
-
                 case ImageFileMachine.AMD64:
                 case ImageFileMachine.IA64:
                 {
                     await ExtractAriaBinary("bget_temp/aria2.exe", AriaBinary.Aria64);
                     break;
                 }
-
                 case ImageFileMachine.ARM:
                 {
                     // If, I mean if lol, Microsoft does release some desktop devices with ARM CPUs later, 
                     // let this program stop here and make x86 great again! :)
-                    MessageBox.Show("This program does not support ARM CPUs, please consider using alternative tools (e.g. You-Get).", "ERROR", 
+                    MessageBox.Show(
+                        "This program does not support ARM CPUs, please consider using alternative tools (e.g. You-Get).",
+                        "ERROR",
                         MessageBoxButton.OK, MessageBoxImage.Error);
+                    Environment.Exit(1);
                     break;
                 }
+            }
+
+            // Run aria2c main process in the backend...
+            var ariaArgument = "--enable-rpc=true" +
+                               $" --optimize-concurrent-downloads={Properties.Settings.Default.AutoDecideConcurrentTask.ToString().ToLower()}" +
+                               $" --split={Properties.Settings.Default.SplitPerTask}" +
+                               $" --max-connection-per-server={Properties.Settings.Default.MaxConnPerServer}" +
+                               $" --disk-cache={Properties.Settings.Default.DiskCache}M" +
+                               $" --max-overall-download-limit={Properties.Settings.Default.GlobalDownloadLimit}K" +
+                               $" --max-overall-upload-limit={Properties.Settings.Default.GlobalUploadLimit}K" +
+                              
+                               // BT stuff
+                               $" --enable-dht={Properties.Settings.Default.EnableDht.ToString().ToLower()}" +
+                               $" --enable-dht6={Properties.Settings.Default.EnableDht.ToString().ToLower()}" +
+                               $" --enable-peer-exchange={Properties.Settings.Default.EnablePex.ToString().ToLower()}" +
+                               $" --bt-enable-lpd={Properties.Settings.Default.EnableLpd.ToString().ToLower()}" +
+                               $" --bt-require-crypto={Properties.Settings.Default.ForceEncrypt.ToString().ToLower()}" +
+                               (Properties.Settings.Default.EnableEncrypt
+                                   ? " --bt-min-crypto-level=arc4"
+                                   : " --bt-min-crypto-level=plain") +
+                               $" --bt-hash-check-seed={Properties.Settings.Default.CheckBeforeSeed.ToString().ToLower()}" +
+                               $" --peer-id-prefix={Properties.Settings.Default.PeerIdPerfix}" +
+                               $" --user-agent={Properties.Settings.Default.TorrentUserAgent}" +
+                               $" --listen-port={Properties.Settings.Default.TorrentPort}" +
+                               $" --seed-ratio={Properties.Settings.Default.SeedRatio}" +
+                               $" --bt-max-peers={Properties.Settings.Default.MaxPeers}";
+
+            var process = new Process
+            {
+                StartInfo = new ProcessStartInfo(AppDomain.CurrentDomain.BaseDirectory + @"\bget_temp\aria2.exe")
+                {
+                    CreateNoWindow = true,
+                    UseShellExecute = false,
+                    Arguments = ariaArgument
+                }
+            };
+
+            // Fire the hole!
+            // If failed, then exit
+            if (!process.Start())
+            {
+                MessageBox.Show(
+                    "Failed to start Aria2 downloader.","Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(1);
             }
         }
 
@@ -53,15 +98,32 @@ namespace BgetWpf.Controller
         /// Let's make this program nicer, not another Qihoo 360 or Baidu lol.
         /// </summary>
         /// <returns></returns>
-        public async Task Stop()
+        public async Task Stop(bool forceQuit = false)
         {
+            DownloadManager downloadManager;
+
+            downloadManager = Properties.Settings.Default.UseBundledAria ?
+                new DownloadManager() :
+                new DownloadManager(Properties.Settings.Default.ExternalRpc);
+
             // Force the process exit first...
             try
             {
-                foreach (var selectedProcess in Process.GetProcessesByName("aria2"))
+                if (forceQuit)
                 {
-                    selectedProcess.Kill();
-                    selectedProcess.WaitForExit();
+                    foreach (var selectedProcess in Process.GetProcessesByName("aria2"))
+                    {
+                        selectedProcess.Kill();
+                        selectedProcess.WaitForExit();
+                    }
+                }
+                else
+                {
+                    // If graceful shutdown failed, retry force stop mode
+                    if (!await downloadManager.Shutdown())
+                    {
+                        await Stop(true);
+                    }
                 }
 
                 // Then remove the whole directory...

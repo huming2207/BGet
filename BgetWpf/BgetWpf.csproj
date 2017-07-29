@@ -58,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controller\InitialConfig.cs" />
     <Compile Include="Model\BgetAddTaskBinding.cs" />
     <Compile Include="Controller\DownloadTaskSeparator.cs" />
     <Compile Include="Model\ConstValue.cs" />
@@ -146,6 +147,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AriaNet\AriaNet\AriaNet.csproj">
+      <Project>{e77826f3-d4e3-4c3a-a781-d0df1838a493}</Project>
+      <Name>AriaNet</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BgetCore\BgetCore.csproj">
       <Project>{e6c95993-9b31-4ca6-8e96-ebdeb91a1dcd}</Project>
       <Name>BgetCore</Name>
