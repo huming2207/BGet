@@ -32,7 +32,7 @@ namespace BgetWpf.Controller
                 case ImageFileMachine.AMD64:
                 case ImageFileMachine.IA64:
                 {
-                    await ExtractAriaBinary("bget_temp/aria2.exe", AriaBinary.Aria64);
+                   // await ExtractAriaBinary("bget_temp/aria2.exe", AriaBinary.Aria64);
                     break;
                 }
                 case ImageFileMachine.ARM:
@@ -47,9 +47,12 @@ namespace BgetWpf.Controller
                     break;
                 }
             }
-
+            
             // Run aria2c main process in the backend...
             var ariaArgument = "--enable-rpc=true" +
+                               (Properties.Settings.Default.SessionPath.Length < 3 
+                                ? $" --save-session={Properties.Settings.Default.DownloadPath}\\bget_session" 
+                                : $" --save-session={Properties.Settings.Default.SessionPath}") + 
                                $" --optimize-concurrent-downloads={Properties.Settings.Default.AutoDecideConcurrentTask.ToString().ToLower()}" +
                                $" --split={Properties.Settings.Default.SplitPerTask}" +
                                $" --max-connection-per-server={Properties.Settings.Default.MaxConnPerServer}" +
@@ -91,6 +94,12 @@ namespace BgetWpf.Controller
                     "Failed to start Aria2 downloader.","Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 Environment.Exit(1);
             }
+            else
+            {
+                var downloadManager = new DownloadManager();
+                var status = await downloadManager.QueryGlobalStatus();
+                return;
+            }
         }
 
         /// <summary>
@@ -100,40 +109,42 @@ namespace BgetWpf.Controller
         /// <returns></returns>
         public async Task Stop(bool forceQuit = false)
         {
-            DownloadManager downloadManager;
-
-            downloadManager = Properties.Settings.Default.UseBundledAria ?
+            var downloadManager = Properties.Settings.Default.UseBundledAria ?
                 new DownloadManager() :
                 new DownloadManager(Properties.Settings.Default.ExternalRpc);
 
             // Force the process exit first...
             try
             {
-                if (forceQuit)
+                // Here's a workaround for "aria2.shutdown"
+                var saveSessionResult = await downloadManager.SaveSession();
+
+                if (!saveSessionResult)
                 {
-                    foreach (var selectedProcess in Process.GetProcessesByName("aria2"))
-                    {
-                        selectedProcess.Kill();
-                        selectedProcess.WaitForExit();
-                    }
+                    MessageBox.Show("Cannot save session before exit!", "WARNING", MessageBoxButton.OK,
+                        MessageBoxImage.Warning);
                 }
-                else
+
+                foreach (var selectedProcess in Process.GetProcessesByName("aria2"))
                 {
-                    // If graceful shutdown failed, retry force stop mode
-                    if (!await downloadManager.Shutdown())
-                    {
-                        await Stop(true);
-                    }
+                    selectedProcess.Kill();
+                    selectedProcess.WaitForExit();
+                }
+
+                // Remove all the file from 
+                foreach (var file in Directory.GetFiles("bget_temp"))
+                {
+                    File.Delete(file);
                 }
 
                 // Then remove the whole directory...
-                Directory.Delete("bget_temp");
+                Directory.Delete("bget_temp", true);
             }
             catch (Exception error)
             {
-                //TODO: handle error
+                MessageBox.Show($"Exit process went wrong!\nReason: {error.Message}", "ERROR",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
         }
 
         private async Task ExtractAriaBinary(string fileName, byte[] resourceContent)

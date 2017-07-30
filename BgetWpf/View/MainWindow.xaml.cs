@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
+using BgetWpf.Controller;
 using BgetWpf.View;
 
 namespace BgetWpf
@@ -69,6 +71,13 @@ namespace BgetWpf
         private void AboutButton_OnClick(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private async void MainWindow_OnClosing(object sender, CancelEventArgs e)
+        {
+            // Stop Aria2
+            var ariaRunner = new AriaRunner();
+            await ariaRunner.Stop();
         }
     }
 }

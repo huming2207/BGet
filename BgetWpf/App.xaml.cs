@@ -18,6 +18,10 @@ namespace BgetWpf
         {
             base.OnStartup(e);
             
+            // Initialize configurations
+            InitialConfig.InitConfig();
+
+            // Set up Aria2
             var ariaRunner = new AriaRunner();
             await ariaRunner.Start();
         }
@@ -26,8 +30,7 @@ namespace BgetWpf
         {
             base.OnExit(e);
 
-            var ariaRunner = new AriaRunner();
-            await ariaRunner.Stop();
+
         }
 
         private void App_OnExit(object sender, ExitEventArgs e)

@@ -406,5 +406,17 @@ namespace BgetWpf.Properties {
                 this["ResetConfig"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SessionPath {
+            get {
+                return ((string)(this["SessionPath"]));
+            }
+            set {
+                this["SessionPath"] = value;
+            }
+        }
     }
 }

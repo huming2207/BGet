@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BgetWpf"
         mc:Ignorable="d"
-        Title="BrinkGet for Windows" Height="500" Width="650">
+        Title="BrinkGet for Windows" Height="500" Width="650"
+        Closing="MainWindow_OnClosing">
     
     <StackPanel Orientation="Vertical">
         <StackPanel Background="White" Height="50" Orientation="Horizontal">
