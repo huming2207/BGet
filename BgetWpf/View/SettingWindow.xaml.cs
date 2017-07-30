@@ -21,6 +21,11 @@ namespace BgetWpf.View
     /// </summary>
     public partial class SettingWindow : Window
     {
+        public SettingWindow()
+        {
+            InitializeComponent();
+        }
+
         private void SettingWindow_OnClosing(object sender, CancelEventArgs e)
         {
             Properties.Settings.Default.Save();
