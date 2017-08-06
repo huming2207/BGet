@@ -5,7 +5,7 @@ using System.IO.Compression;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
-using AriaNet.Aria;
+using AriaNet;
 
 namespace BgetWpf.Controller
 {
@@ -17,35 +17,16 @@ namespace BgetWpf.Controller
         /// <returns></returns>
         public async Task Start()
         {
-            // The newest way to get CPU architecture, even Mono is supported (but sadly, it doesn't support WPF)
-            // See here for more details: https://stackoverflow.com/questions/767613/identifying-the-cpu-architecture-type-using-c-sharp
-            typeof(object).Module.GetPEKind(out PortableExecutableKinds portableExecutableKinds, out ImageFileMachine imageFileMachine);
             Directory.CreateDirectory("bget_temp");
 
-            switch (imageFileMachine)
+            // Detect architecture
+            if (Environment.Is64BitOperatingSystem)
             {
-                case ImageFileMachine.I386:
-                {
-                    await ExtractAriaBinary("bget_temp/aria2.exe", AriaBinary.Aria32);
-                    break;
-                }
-                case ImageFileMachine.AMD64:
-                case ImageFileMachine.IA64:
-                {
-                   // await ExtractAriaBinary("bget_temp/aria2.exe", AriaBinary.Aria64);
-                    break;
-                }
-                case ImageFileMachine.ARM:
-                {
-                    // If, I mean if lol, Microsoft does release some desktop devices with ARM CPUs later, 
-                    // let this program stop here and make x86 great again! :)
-                    MessageBox.Show(
-                        "This program does not support ARM CPUs, please consider using alternative tools (e.g. You-Get).",
-                        "ERROR",
-                        MessageBoxButton.OK, MessageBoxImage.Error);
-                    Environment.Exit(1);
-                    break;
-                }
+                await ExtractAriaBinary("bget_temp/aria2.exe", AriaBinary.Aria64);
+            }
+            else
+            {
+                await ExtractAriaBinary("bget_temp/aria2.exe", AriaBinary.Aria32);
             }
             
             // Run aria2c main process in the backend...
@@ -87,18 +68,42 @@ namespace BgetWpf.Controller
             };
 
             // Fire the hole!
-            // If failed, then exit
-            if (!process.Start())
+            // If failed, then exit (of course lol)
+            try
             {
-                MessageBox.Show(
-                    "Failed to start Aria2 downloader.","Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                Environment.Exit(1);
+                if (!process.Start())
+                {
+                    MessageBox.Show(
+                        "Failed to start Aria2 downloader.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Environment.Exit(1);
+                }
+                else
+                {
+                    var ariaManager = Properties.Settings.Default.UseBundledAria ?
+                        new AriaManager() :
+                        new AriaManager(Properties.Settings.Default.ExternalRpc);
+
+                    var testAriaVersion = await ariaManager.GetVersion();
+
+                    // If aria2 RPC service fails, exit too.
+                    if (string.IsNullOrEmpty(testAriaVersion.Version))
+                    {
+                        MessageBox.Show(
+                            "Aria2 downloader started but not working properly.\n" +
+                            " Please check your firewall configuration.", "Error",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                        process.Kill();
+                        Environment.Exit(1);
+                    }
+
+                }
             }
-            else
+            catch (Exception error)
             {
-                var downloadManager = new DownloadManager();
-                var status = await downloadManager.QueryGlobalStatus();
-                return;
+                MessageBox.Show($"Exit process went wrong!\nReason: {error.Message}", "ERROR",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                process.Kill();
+                Environment.Exit(1);
             }
         }
 
@@ -109,15 +114,15 @@ namespace BgetWpf.Controller
         /// <returns></returns>
         public async Task Stop(bool forceQuit = false)
         {
-            var downloadManager = Properties.Settings.Default.UseBundledAria ?
-                new DownloadManager() :
-                new DownloadManager(Properties.Settings.Default.ExternalRpc);
+            var ariaManager = Properties.Settings.Default.UseBundledAria ?
+                new AriaManager() :
+                new AriaManager(Properties.Settings.Default.ExternalRpc);
 
             // Force the process exit first...
             try
             {
                 // Here's a workaround for "aria2.shutdown"
-                var saveSessionResult = await downloadManager.SaveSession();
+                var saveSessionResult = await ariaManager.SaveSession();
 
                 if (!saveSessionResult)
                 {
@@ -144,6 +149,7 @@ namespace BgetWpf.Controller
             {
                 MessageBox.Show($"Exit process went wrong!\nReason: {error.Message}", "ERROR",
                     MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(1);
             }
         }
 
