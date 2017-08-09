@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
+using AriaNet;
 using BgetCore.User;
 using BgetCore.User.UserResult;
 using BgetCore.Video;
@@ -20,28 +22,39 @@ namespace BgetWpf.Controller
         /// <returns></returns>
         public async Task TaskHandler(string url, IProgress<double[]> progressStatus)
         {
+            // Declare aria manager
+            var ariaManager = new AriaManager();
+
             // Case 1: Single Bilibili video
             if (Regex.IsMatch(url, @"bilibili.com/video/av(\d+)"))
             {
-                
+                // Make some fake news
+                progressStatus.Report(new[] { 0d, 0d });
+
+                await ariaManager.AddUri(await GenerateGeneralVideoLink(url), 
+                    "Mozilla/5.0 (MSIE 10.0; Windows NT 6.1; Trident/5.0)", url);
+
+                // Make some fake news again
+                progressStatus.Report(new[]{ 1d, 1d });
             }
 
             // Case 2: A user and his/her videos
             else if (Regex.IsMatch(url, @"space.bilibili.com/(\d+)"))
             {
-                
+                await ariaManager.AddUri(await GenerateUserVideoLink(url, progressStatus),
+                    "Mozilla/5.0 (MSIE 10.0; Windows NT 6.1; Trident/5.0)", url);
             }
 
             // Case 3: Aria2 commandline
             else if(Regex.IsMatch(url, @"^(aria2c).*http(s?)://"))
             {
-                
+                MessageBox.Show("Not yet implemented.");
             }
 
             // Case 4: Normal task
             else if (Regex.IsMatch(url, @"^http(s?)://"))
             {
-                
+                await ariaManager.AddUri(new List<string>(){url});
             }
 
             // Case 5: Don't know wtf is this...
