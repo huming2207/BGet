@@ -1,5 +1,5 @@
 ﻿using System.Xml.Serialization;
-using BgetCore.Video.VideoResult;
+
 
 namespace BgetCore.Video.VideoResult
 {

@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using AriaNet;
 using BgetCore.User;
-using BgetCore.User.UserResult;
 using BgetCore.Video;
+using BgetWpf.Properties;
 
 namespace BgetWpf.Controller
 {
     public class DownloadTaskSeparator
     {
         /// <summary>
-        /// The main method for this class, import the URL and sparate automatically.
+        ///     The main method for this class, import the URL and sparate automatically.
         /// </summary>
         /// <param name="url"></param>
         /// <returns></returns>
@@ -29,13 +27,13 @@ namespace BgetWpf.Controller
             if (Regex.IsMatch(url, @"bilibili.com/video/av(\d+)"))
             {
                 // Make some fake news
-                progressStatus.Report(new[] { 0d, 0d });
+                progressStatus.Report(new[] {0d, 0d});
 
-                await ariaManager.AddUri(await GenerateGeneralVideoLink(url), 
+                await ariaManager.AddUri(await GenerateGeneralVideoLink(url),
                     "Mozilla/5.0 (MSIE 10.0; Windows NT 6.1; Trident/5.0)", url);
 
                 // Make some fake news again
-                progressStatus.Report(new[]{ 1d, 1d });
+                progressStatus.Report(new[] {1d, 1d});
             }
 
             // Case 2: A user and his/her videos
@@ -46,7 +44,7 @@ namespace BgetWpf.Controller
             }
 
             // Case 3: Aria2 commandline
-            else if(Regex.IsMatch(url, @"^(aria2c).*http(s?)://"))
+            else if (Regex.IsMatch(url, @"^(aria2c).*http(s?)://"))
             {
                 MessageBox.Show("Not yet implemented.");
             }
@@ -54,28 +52,25 @@ namespace BgetWpf.Controller
             // Case 4: Normal task
             else if (Regex.IsMatch(url, @"^http(s?)://"))
             {
-                await ariaManager.AddUri(new List<string>(){url});
+                await ariaManager.AddUri(new List<string> {url});
             }
 
             // Case 5: Don't know wtf is this...
             else
             {
-                progressStatus.Report(new[]{-999d,-999d});
-                return;
+                progressStatus.Report(new[] {-999d, -999d});
             }
         }
 
         private async Task AddTaskToAria(List<string> urlList, IProgress<double[]> progressStatus)
         {
-            
         }
 
         /// <summary>
-        /// Generate video link
-        /// 
-        /// Note:
-        /// 1. UserAgent (MSIE10) and Referrer must be set to the downloader, otherwise server will return 500
-        /// 2. Exception may be raised if something goes wrong (e.g. no video found)
+        ///     Generate video link
+        ///     Note:
+        ///     1. UserAgent (MSIE10) and Referrer must be set to the downloader, otherwise server will return 500
+        ///     2. Exception may be raised if something goes wrong (e.g. no video found)
         /// </summary>
         /// <param name="contentUrl"></param>
         /// <returns></returns>
@@ -91,28 +86,24 @@ namespace BgetWpf.Controller
             var urlList = new List<string>();
 
             // Just a practice of LINQ...
-            if (Properties.Settings.Default.PreferFlv)
-            {
+            if (Settings.Default.PreferFlv)
                 videoUrl.Durl.ForEach(url => urlList.Add(url.Url));
-            }
             else
-            {
                 urlList.AddRange(
                     videoUrl.Durl.Where(url => url.BackupUrl != null && url.BackupUrl.Url.Count != 0)
                         .SelectMany(url => url.BackupUrl.Url));
-            }
 
             return urlList;
         }
 
         /// <summary>
-        /// Generate video links for all videos from a certain user.
-        /// This method may costs quite a long time. As a result, a IProgess is implemented to retrieve the status
-        /// 
-        /// Note:
-        /// 1. UserAgent (MSIE10) and Referrer must be set to the downloader, otherwise server will return 500
-        /// 2. Exception may be raised if something goes wrong (e.g. no video found)
-        /// 3. Status reporting example is here: https://stackoverflow.com/questions/19980112/how-to-do-progress-reporting-using-async-await/19980151#19980151
+        ///     Generate video links for all videos from a certain user.
+        ///     This method may costs quite a long time. As a result, a IProgess is implemented to retrieve the status
+        ///     Note:
+        ///     1. UserAgent (MSIE10) and Referrer must be set to the downloader, otherwise server will return 500
+        ///     2. Exception may be raised if something goes wrong (e.g. no video found)
+        ///     3. Status reporting example is here:
+        ///     https://stackoverflow.com/questions/19980112/how-to-do-progress-reporting-using-async-await/19980151#19980151
         ///     It's a two-element double array. The first is the page status and the second is the video status
         /// </summary>
         /// <param name="contentUrl"></param>
@@ -128,21 +119,20 @@ namespace BgetWpf.Controller
             var urlList = new List<string>();
 
             for (var currentVideoPage = 0; currentVideoPage < userVideoResult.Count; currentVideoPage++)
+            for (var currentVideo = 0;
+                currentVideo < userVideoResult[currentVideoPage].UploadedVideo.VideoList.Count;
+                currentVideo++)
             {
-                for (var currentVideo = 0; currentVideo < userVideoResult[currentVideoPage].UploadedVideo.VideoList.Count; currentVideo++)
-                {
+                var video = userVideoResult[currentVideoPage].UploadedVideo.VideoList[currentVideo];
+                urlList.AddRange(await GenerateGeneralVideoLink(video.ContentId));
 
-                    var video = userVideoResult[currentVideoPage].UploadedVideo.VideoList[currentVideo];
-                    urlList.AddRange(await GenerateGeneralVideoLink(video.ContentId));
-                    
-                    // Report the status 
-                    progressStatus.Report(
-                        new[]
-                        {
-                            (currentVideoPage / (double)userVideoResult.Count),
-                            (currentVideo / (double)userVideoResult[currentVideoPage].UploadedVideo.VideoList.Count)
-                        });
-                }
+                // Report the status 
+                progressStatus.Report(
+                    new[]
+                    {
+                        currentVideoPage / (double) userVideoResult.Count,
+                        currentVideo / (double) userVideoResult[currentVideoPage].UploadedVideo.VideoList.Count
+                    });
             }
 
             return urlList;

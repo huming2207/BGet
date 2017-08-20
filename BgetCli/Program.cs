@@ -1,20 +1,19 @@
 ﻿using System;
-using System.Diagnostics;
 using BgetCore.Video;
 
 namespace BgetCli
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.Write("[INFO] Enter your video ID, e.g. av349183: ");
-            string inputVideo = Console.ReadLine();
+            var inputVideo = Console.ReadLine();
             Console.WriteLine("[INFO] Please wait...");
 
             var videoInfoCrawler = new VideoInfoCrawler();
             var videoInfo = videoInfoCrawler.GetVideoInfo(inputVideo).Result;
-            string cid = videoInfo.ContentId;
+            var cid = videoInfo.ContentId;
             Console.WriteLine("[DEBUG] CID is " + cid);
             Console.WriteLine("[INFO] Title: " + videoInfo.Title);
             Console.WriteLine("[INFO] Author: " + videoInfo.Author);
@@ -24,22 +23,16 @@ namespace BgetCli
             var videoUrl = videoUrlGrabber.GetUrlBySingleContentId(videoInfo).Result;
             Console.WriteLine("[INFO] Got {0} video sections.", videoUrl.Durl.Count);
 
-            
 
-            foreach(var url in videoUrl.Durl)
+            foreach (var url in videoUrl.Durl)
             {
                 Console.WriteLine("[INFO] Flash video URL: {0}", url.Url);
-                
-                if(url.BackupUrl != null && url.BackupUrl.Url.Count != 0)
-                {
-                    foreach(var mp4Url in url.BackupUrl.Url)
-                    {
+
+                if (url.BackupUrl != null && url.BackupUrl.Url.Count != 0)
+                    foreach (var mp4Url in url.BackupUrl.Url)
                         Console.WriteLine("[INFO] MP4 backup video URL: {0}", mp4Url);
-                    }
-                }
             }
 
-            
 
             Console.Read();
         }
