@@ -1,5 +1,8 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
+using System.Windows.Threading;
+using AriaNet;
 using BgetWpf.Controller;
 using BgetWpf.View;
 
@@ -10,9 +13,25 @@ namespace BgetWpf
     /// </summary>
     public partial class MainWindow : Window
     {
+        private DispatcherTimer AriaInfoRefresher;
+        private AriaManager AriaManager;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            AriaManager = Properties.Settings.Default.UseExternalAria 
+                ? new AriaManager(Properties.Settings.Default.ExternalRpc) 
+                : new AriaManager();
+            
+            // Register the aria refresh timer
+            AriaInfoRefresher = new DispatcherTimer()
+            {
+                Interval = new TimeSpan(0,0,0,1)
+            };
+
+            AriaInfoRefresher.Tick += AriaInfo_OnRefresh;
+            AriaInfoRefresher.Start();
         }
 
         private void AddTaskButton_OnClick(object sender, RoutedEventArgs e)
@@ -57,6 +76,11 @@ namespace BgetWpf
             // Stop Aria2
             var ariaRunner = new AriaRunner();
             await ariaRunner.Stop();
+        }
+
+        private async void AriaInfo_OnRefresh(object sender, EventArgs e)
+        {
+            
         }
     }
 }

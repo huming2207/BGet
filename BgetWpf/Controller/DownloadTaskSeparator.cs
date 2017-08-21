@@ -46,7 +46,7 @@ namespace BgetWpf.Controller
             // Case 3: Aria2 commandline
             else if (Regex.IsMatch(url, @"^(aria2c).*http(s?)://"))
             {
-                MessageBox.Show("Not yet implemented.");
+                MessageBox.Show("Not yet implemented, use URL instead.");
             }
 
             // Case 4: Normal task
@@ -60,10 +60,6 @@ namespace BgetWpf.Controller
             {
                 progressStatus.Report(new[] {-999d, -999d});
             }
-        }
-
-        private async Task AddTaskToAria(List<string> urlList, IProgress<double[]> progressStatus)
-        {
         }
 
         /// <summary>

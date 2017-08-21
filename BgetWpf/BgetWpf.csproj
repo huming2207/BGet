@@ -64,6 +64,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller\InitialConfig.cs" />
+    <Compile Include="Controller\TaskHandler.cs" />
     <Compile Include="Model\BgetAddTaskBinding.cs" />
     <Compile Include="Controller\DownloadTaskSeparator.cs" />
     <Compile Include="Resources\IconResource.Designer.cs">
