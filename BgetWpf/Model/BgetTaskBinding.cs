@@ -11,7 +11,6 @@ namespace BgetWpf.Model
         public string TaskTitle           { get; set; } // Title, can be video title or a file name
         public string TaskStatusText      { get; set; } // Status text, e.g. "Finished", "Seeding" or "Downloading"
         public Brush  TaskStatusColor     { get; set; } // Status text color, turns red if error occur, green when finishes
-        public int    TaskProgressValue   { get; set; } // Progress bar value
-        public string TaskProgressText    { get; set; } // Progress text, e.g. 95.27%
+        public string TaskProgressValue   { get; set; } // Task progress value, e.g. 95.27%
     }
 }

@@ -13,25 +13,25 @@ namespace BgetWpf
     /// </summary>
     public partial class MainWindow : Window
     {
-        private DispatcherTimer AriaInfoRefresher;
-        private AriaManager AriaManager;
+        private DispatcherTimer ariaInfoRefresher;
+
+        private TaskHandler taskHandler;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            AriaManager = Properties.Settings.Default.UseExternalAria 
-                ? new AriaManager(Properties.Settings.Default.ExternalRpc) 
-                : new AriaManager();
             
             // Register the aria refresh timer
-            AriaInfoRefresher = new DispatcherTimer()
+            ariaInfoRefresher = new DispatcherTimer()
             {
                 Interval = new TimeSpan(0,0,0,1)
             };
 
-            AriaInfoRefresher.Tick += AriaInfo_OnRefresh;
-            AriaInfoRefresher.Start();
+            taskHandler = new TaskHandler();
+
+            ariaInfoRefresher.Tick += AriaInfo_OnRefresh;
+            ariaInfoRefresher.Start();
         }
 
         private void AddTaskButton_OnClick(object sender, RoutedEventArgs e)
@@ -80,7 +80,7 @@ namespace BgetWpf
 
         private async void AriaInfo_OnRefresh(object sender, EventArgs e)
         {
-            
+            DownloadTaskList.ItemsSource = await taskHandler.UpdateTaskInfo();
         }
     }
 }
